@@ -8,9 +8,15 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class App extends Application {
+
+    /**
+     * This variable is set when the user log in. Can be used anywhere in the code.
+     */
+    public static String userName;
+
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("sign_up.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("sign_up.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Sign Up!");
         stage.setScene(scene);

@@ -17,14 +17,14 @@
       <children>
       
                 <Label fx:id="welcomeText" prefHeight="25.0" prefWidth="142.0" text="Username" />
-         <TextField HBox.hgrow="ALWAYS" />
+         <TextField fx:id="username" HBox.hgrow="ALWAYS" />
       </children>
    </HBox>
    <HBox layoutX="30.0" layoutY="68.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="26.0" prefWidth="200.0">
       <children>
          <Label fx:id="welcomeText1" prefHeight="25.0" prefWidth="142.0" text="Password" />
-         <PasswordField HBox.hgrow="ALWAYS" />
+         <PasswordField fx:id="password" HBox.hgrow="ALWAYS" />
       </children>
    </HBox>
-    <Button onAction="#onHelloButtonClick" text="Sign Up" />
+    <Button fx:id="SignUp" onAction="#viewHome" text="Sign Up" />
 </VBox>

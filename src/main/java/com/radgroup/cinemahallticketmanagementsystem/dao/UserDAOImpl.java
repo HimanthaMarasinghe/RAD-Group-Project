@@ -5,6 +5,7 @@ import com.radgroup.cinemahallticketmanagementsystem.util.Database;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserDAOImpl implements UserDAO {
@@ -28,7 +29,21 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public User getUser(int id) {
+    public User getUser(String username) {
+        try {
+            Connection conn = Database.getConnection();
+            String query = "SELECT * FROM users WHERE username = ?";
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1, username);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                String password = rs.getString("password");
+                String role = rs.getString("role");
+                return new User(username, password, role);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         return null;
     }
 
@@ -38,7 +53,7 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public boolean deleteUser(int id) {
+    public boolean deleteUser(String username) {
         return false;
     }
 }
