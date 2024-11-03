@@ -61,7 +61,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.radgroup.cinemahallticketmanagementsystem/com.radgroup.cinemahallticketmanagementsystem.HelloApplication
+                                com.radgroup.cinemahallticketmanagementsystem/com.radgroup.cinemahallticketmanagementsystem.App
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>

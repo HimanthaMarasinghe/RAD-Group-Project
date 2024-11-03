@@ -1,9 +1,9 @@
-package com.radgroup.cinemahallticketmanagementsystem;
+package com.radgroup.cinemahallticketmanagementsystem.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class HelloController {
+public class Sign_up {
     @FXML
     private Label welcomeText;
 
