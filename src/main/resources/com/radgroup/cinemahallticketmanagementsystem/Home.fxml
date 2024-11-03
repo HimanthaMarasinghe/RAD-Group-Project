@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.radgroup.cinemahallticketmanagementsystem.controllers.Home">
+   <children>
+      <Label fx:id="welcome" alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="50.0" text="welcome">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="130.0" prefWidth="430.0" text="This is home page" />
+   </children>
+</VBox>
