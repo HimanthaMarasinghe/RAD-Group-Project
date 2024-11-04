@@ -1,16 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.radgroup.cinemahallticketmanagementsystem.controllers.Home">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="477.0" prefWidth="760.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.radgroup.cinemahallticketmanagementsystem.controllers.Home">
    <children>
-      <Label fx:id="welcome" alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="50.0" text="welcome">
-         <font>
-            <Font size="21.0" />
-         </font>
-      </Label>
-      <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="130.0" prefWidth="430.0" text="This is home page" />
+      <AnchorPane prefHeight="471.0" prefWidth="631.0">
+         <children>
+            <ImageView fitHeight="85.0" fitWidth="85.0" layoutX="64.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="14.0" layoutY="162.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="185.0" text="Home" />
+            <Button layoutX="14.0" layoutY="203.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="185.0" text="Movies" />
+            <Button layoutX="14.0" layoutY="245.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="185.0" text="Customers" />
+            <Button layoutX="14.0" layoutY="285.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="185.0" text="Employees" />
+            <Button layoutX="14.0" layoutY="324.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="185.0" text="My Profile" />
+            <Button layoutX="14.0" layoutY="418.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="185.0" text="Log Out" />
+            <TableView layoutX="217.0" layoutY="74.0" prefHeight="369.0" prefWidth="515.0">
+              <columns>
+                <TableColumn prefWidth="87.0" text="Date" />
+                <TableColumn prefWidth="85.0" text="Time" />
+                  <TableColumn prefWidth="235.0" text="Movie" />
+                  <TableColumn prefWidth="107.0" text="Seat Availability" />
+              </columns>
+            </TableView>
+            <Button layoutX="583.0" layoutY="29.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Add New Ticket" />
+            <Text fx:id="welcome" layoutX="25.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="163.13671875">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
    </children>
 </VBox>
