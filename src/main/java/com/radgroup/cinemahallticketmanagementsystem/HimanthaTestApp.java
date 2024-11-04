@@ -12,13 +12,13 @@ public class HimanthaTestApp {
         Scanner sc = new Scanner(System.in);
         System.out.println("Add username");
         String username = sc.next();
-//        System.out.println("Add password");
-//        String password = sc.next();
-//        System.out.println("Add role");
-//        String role = sc.next();
-//        User user = new User(username, password, role);
-//        UserDAO U = new UserDAOImpl();
-//        U.addUser(user);
+        System.out.println("Add password");
+        String password = sc.next();
+        System.out.println("Add role");
+        String role = sc.next();
+        User user = new User(username, password, role);
+        UserDAO U = new UserDAOImpl();
+        U.addUser(user);
 
         UserDAO userDAO = new UserDAOImpl();
         User user = userDAO.getUser(username);
