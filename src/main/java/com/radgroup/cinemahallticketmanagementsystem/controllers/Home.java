@@ -10,7 +10,7 @@ public class Home implements DataReceiver{
 
     @Override
     public void receiveData(Object data) {
-        if (data instanceof String) {
+        if(data instanceof String){
             welcome.setText("Welcome "+(String) data); // Set the username on the label
         }
     }
