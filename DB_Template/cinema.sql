@@ -39,11 +39,11 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`username`, `password`, `role`) VALUES
-('a', 'a', 'a'),
-('aa', 'a', 'a'),
-('b', 'b', 'b');
-COMMIT;
+-- INSERT INTO `users` (`username`, `password`, `role`) VALUES
+-- ('a', 'a', 'a'),
+-- ('aa', 'a', 'a'),
+-- ('b', 'b', 'b');
+-- COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
