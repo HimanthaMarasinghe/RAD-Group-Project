@@ -1,9 +1,8 @@
 package com.radgroup.cinemahallticketmanagementsystem.controllers;
 
-public class Movies implements Cont {
-
+public class Customers implements Cont{
     @Override
     public void setView(Object data) {
-        System.out.println("Movies");
+        System.out.println("Customer view");
     }
 }
