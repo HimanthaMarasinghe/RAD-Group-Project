@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="390.0" prefWidth="578.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox alignment="CENTER" layoutX="257.0" layoutY="82.0" prefHeight="390.0" prefWidth="578.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="149.0" prefWidth="578.0">
+               <children>
+                  <AnchorPane prefHeight="162.0" prefWidth="374.0" style="-fx-background-color: #EFEFEF; -fx-border-color: #000000;">
+                     <children>
+                        <Label alignment="CENTER" layoutX="119.0" layoutY="14.0" text="My Profile" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="63.0" layoutY="83.0" text="User Nmae" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="60.0" />
+                        <Label layoutX="106.0" layoutY="60.0" style="-fx-background-color: #FFFFFF;" text="Label" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="60.0" />
+                        <Button layoutX="153.0" layoutY="110.0" mnemonicParsing="false" text="Update My Password" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

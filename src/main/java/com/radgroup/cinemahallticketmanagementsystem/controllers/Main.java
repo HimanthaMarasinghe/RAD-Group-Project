@@ -3,7 +3,7 @@ package com.radgroup.cinemahallticketmanagementsystem.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class Home implements Cont {
+public class Main implements Cont{
     @FXML
     private Label welcome;
 
