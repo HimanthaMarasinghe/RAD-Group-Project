@@ -39,7 +39,7 @@ public class Sign_up {
                 if (user != null) {
                     if(user.getPassword().equals(passwordInput)) {
                         App.userName = usernameInput;
-                        SceneSwitcher.switchScene(event, "Home", App.userName);
+                        SceneSwitcher.switchScene(event, "Main", App.userName);
                     }
                     else{
                         Alert alert = new Alert(Alert.AlertType.ERROR);
