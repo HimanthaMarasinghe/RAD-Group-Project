@@ -8,4 +8,6 @@ module com.radgroup.cinemahallticketmanagementsystem {
     exports com.radgroup.cinemahallticketmanagementsystem;
     exports com.radgroup.cinemahallticketmanagementsystem.controllers;
     opens com.radgroup.cinemahallticketmanagementsystem.controllers to javafx.fxml;
+    exports com.radgroup.cinemahallticketmanagementsystem.models;
+    opens com.radgroup.cinemahallticketmanagementsystem.models to javafx.fxml;
 }

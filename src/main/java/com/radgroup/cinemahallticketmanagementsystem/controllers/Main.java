@@ -1,6 +1,5 @@
 package com.radgroup.cinemahallticketmanagementsystem.controllers;
 
-import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -44,7 +43,7 @@ public class Main implements Cont{
         movies = loadTabContent(MoviesTab, "Movies");
         customers = loadTabContent(CustomersTab, "Customers");
         emp = loadTabContent(EmployeesTab, "Employees");
-        myProfile = loadTabContent(MyProfileTab, "My Profile");
+        myProfile = loadTabContent(MyProfileTab, "My_Profile");
         isInizialized = true;
 
     }

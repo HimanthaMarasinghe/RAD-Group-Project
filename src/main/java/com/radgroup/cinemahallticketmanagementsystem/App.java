@@ -20,6 +20,9 @@ public class App extends Application {
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Sign In!");
         stage.setScene(scene);
+//        stage.setResizable(false);
+        stage.setX(50);
+        stage.setY(50);
         stage.show();
     }
 

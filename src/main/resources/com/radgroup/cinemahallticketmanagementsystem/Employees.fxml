@@ -14,7 +14,7 @@
         <TableColumn minWidth="100.0" prefWidth="555.2000058889389" text="UserName" />
         </columns>
     </TableView>
-      <Button layoutX="145.0" layoutY="14.0" mnemonicParsing="false" text="Add New Employees" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+      <Button layoutX="145.0" layoutY="14.0" mnemonicParsing="false" onAction="#addNewEmployee" text="Add New Employees" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
       <Label fx:id="test" layoutX="28.0" layoutY="55.0" text="Employees" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="50.0">
          <font>
             <Font size="18.0" />
