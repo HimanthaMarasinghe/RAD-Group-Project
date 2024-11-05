@@ -8,11 +8,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" prefHeight="180.0" prefWidth="398.0" spacing="20.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.radgroup.cinemahallticketmanagementsystem.controllers.Sign_up">
+<VBox alignment="CENTER" prefHeight="180.0" prefWidth="398.0" spacing="20.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.radgroup.cinemahallticketmanagementsystem.controllers.Sign_in">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
-   <Label text="Sign Up!" />
+   <Label text="Sign In!" />
    <HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="26.0" prefWidth="358.0">
       <children>
       
@@ -26,5 +26,5 @@
          <PasswordField fx:id="password" HBox.hgrow="ALWAYS" />
       </children>
    </HBox>
-    <Button fx:id="SignUp" onAction="#viewHome" text="Sign Up" />
+    <Button fx:id="SignIn" onAction="#viewHome" text="Sign Up" />
 </VBox>

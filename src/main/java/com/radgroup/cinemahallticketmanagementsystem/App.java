@@ -16,9 +16,9 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("sign_up.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("sign_in.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Sign Up!");
+        stage.setTitle("Sign In!");
         stage.setScene(scene);
         stage.show();
     }
