@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="390.0" prefWidth="578.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="390.0" prefWidth="578.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.radgroup.cinemahallticketmanagementsystem.controllers.Employees">
     <children>
     <TableView layoutX="159.0" layoutY="98.0" prefHeight="371.2" prefWidth="600.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="80.0">
         <columns>
@@ -15,7 +15,7 @@
         </columns>
     </TableView>
       <Button layoutX="145.0" layoutY="14.0" mnemonicParsing="false" text="Add New Employees" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
-      <Label layoutX="28.0" layoutY="55.0" text="Employees" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="50.0">
+      <Label fx:id="test" layoutX="28.0" layoutY="55.0" text="Employees" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="50.0">
          <font>
             <Font size="18.0" />
          </font>
