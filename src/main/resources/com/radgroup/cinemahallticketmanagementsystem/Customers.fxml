@@ -16,7 +16,7 @@
             <TableColumn minWidth="143.19992065429688" prefWidth="143.19992065429688" text="Date of Birth" />
         </columns>
     </TableView>
-      <Button layoutX="145.0" layoutY="14.0" mnemonicParsing="false" text="Add New Customers" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+      <Button layoutX="145.0" layoutY="14.0" mnemonicParsing="false" onAction="#addNewCustomer" text="Add New Customers" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
       <Label layoutX="28.0" layoutY="55.0" text="Registered Customers" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="50.0">
          <font>
             <Font size="18.0" />

@@ -9,15 +9,15 @@
 
 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="390.0" prefWidth="578.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.radgroup.cinemahallticketmanagementsystem.controllers.Home">
     <children>
-    <TableView layoutX="159.0" layoutY="98.0" prefHeight="371.2" prefWidth="600.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="80.0">
+    <TableView fx:id="UpcomingTable" layoutX="159.0" layoutY="98.0" prefHeight="371.2" prefWidth="600.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="80.0">
         <columns>
-        <TableColumn minWidth="100.0" prefWidth="-1.0" text="Date" />
-        <TableColumn minWidth="150.0" prefWidth="-1.0" text="Time" />
-            <TableColumn minWidth="144.800048828125" prefWidth="198.40008544921875" text="Movie" />
-            <TableColumn minWidth="66.4000244140625" prefWidth="107.19992065429688" text="Seat Availability" />
+        <TableColumn fx:id="date" minWidth="100.0" prefWidth="-1.0" text="Date" />
+        <TableColumn fx:id="time" minWidth="150.0" prefWidth="-1.0" text="Time" />
+            <TableColumn fx:id="movie" minWidth="144.800048828125" prefWidth="198.40008544921875" text="Movie" />
+            <TableColumn fx:id="seat" minWidth="66.4000244140625" prefWidth="107.19992065429688" text="Seat Availability" />
         </columns>
     </TableView>
-      <Button layoutX="145.0" layoutY="14.0" mnemonicParsing="false" text="Add New Ticket" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+      <Button layoutX="145.0" layoutY="14.0" mnemonicParsing="false" onAction="#AddNewTicket" text="Add New Ticket" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
       <Label layoutX="28.0" layoutY="55.0" text="Upcoming Shows" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="50.0">
          <font>
             <Font size="18.0" />

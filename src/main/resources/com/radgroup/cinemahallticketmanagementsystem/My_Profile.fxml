@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="390.0" prefWidth="578.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="com.radgroup.cinemahallticketmanagementsystem.controllers.MyProfile">
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="390.0" prefWidth="578.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.radgroup.cinemahallticketmanagementsystem.controllers.MyProfile">
    <children>
       <VBox alignment="CENTER" layoutX="257.0" layoutY="82.0" prefHeight="390.0" prefWidth="578.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -22,7 +22,7 @@
                         </Label>
                         <Label layoutX="63.0" layoutY="83.0" text="User Nmae" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="60.0" />
                         <Label layoutX="106.0" layoutY="60.0" style="-fx-background-color: #FFFFFF;" text="Label" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="60.0" />
-                        <Button layoutX="153.0" layoutY="110.0" mnemonicParsing="false" text="Update My Password" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
+                        <Button layoutX="153.0" layoutY="110.0" mnemonicParsing="false" onAction="#updatePassword" text="Update My Password" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
                      </children>
                   </AnchorPane>
                </children>
