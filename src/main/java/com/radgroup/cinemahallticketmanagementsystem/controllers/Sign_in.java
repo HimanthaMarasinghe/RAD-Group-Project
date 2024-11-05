@@ -13,7 +13,7 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
-public class Sign_up {
+public class Sign_in {
 
     @FXML
     private TextField username;
