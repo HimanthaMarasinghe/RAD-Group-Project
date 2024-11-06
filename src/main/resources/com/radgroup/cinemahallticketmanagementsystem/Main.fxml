@@ -48,7 +48,7 @@
             </Tab>
             <Tab fx:id="MyProfileTab" onSelectionChanged="#SelectMyProfileTab" text="My Profile">
                <content>
-<!--                 <fx:include source="My_Profile.fxml" />-->
+<!--                 <fx:include source="MyProfile.fxml" />-->
                </content>
             </Tab>
         </tabs>

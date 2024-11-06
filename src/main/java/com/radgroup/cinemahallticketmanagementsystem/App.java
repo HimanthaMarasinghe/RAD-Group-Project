@@ -1,6 +1,8 @@
 package com.radgroup.cinemahallticketmanagementsystem;
 
 import javafx.application.Application;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -13,6 +15,7 @@ public class App extends Application {
      * This variable is set when the user log in. Can be used anywhere in the code.
      */
     public static String userName;
+    public static StringProperty NameOfTheLogedUser = new SimpleStringProperty();
 
     @Override
     public void start(Stage stage) throws IOException {

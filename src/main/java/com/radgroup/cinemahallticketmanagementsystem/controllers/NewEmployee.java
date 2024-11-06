@@ -14,11 +14,24 @@ public class NewEmployee extends dialogBox {
     private TextField newEmpUsername;
 
     @FXML
+    private TextField newEmpName;
+
+    @FXML
+    private TextField newEmpAdd;
+
+    @FXML
+    private TextField newEmpPhone;
+
+
+    @FXML
     private void addEmployees(ActionEvent event) {
 
         //Add user in to the db
-        testUsersList.add(new User(newEmpUsername.getText()));
-
+        String username = newEmpUsername.getText();
+        String name = newEmpName.getText();
+        String add = newEmpAdd.getText();
+        String phone = newEmpPhone.getText();
+        testUsersList.add(new User(username, name, add, phone));
         dialog.setResult(ButtonType.OK);
         dialog.close();
     }

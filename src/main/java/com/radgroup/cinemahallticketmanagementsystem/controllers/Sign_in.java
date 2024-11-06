@@ -5,6 +5,8 @@ import com.radgroup.cinemahallticketmanagementsystem.dao.UserDAO;
 import com.radgroup.cinemahallticketmanagementsystem.dao.UserDAOImpl;
 import com.radgroup.cinemahallticketmanagementsystem.models.User;
 import com.radgroup.cinemahallticketmanagementsystem.util.SceneSwitcher;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -39,7 +41,8 @@ public class Sign_in {
                 if (user != null) {
                     if(user.getPassword().equals(passwordInput)) {
                         App.userName = usernameInput;
-                        SceneSwitcher.switchScene(event, "Main", App.userName);
+                        App.NameOfTheLogedUser = new SimpleStringProperty(user.getName());
+                        SceneSwitcher.switchScene(event, "Main", null);
                     }
                     else{
                         Alert alert = new Alert(Alert.AlertType.ERROR);

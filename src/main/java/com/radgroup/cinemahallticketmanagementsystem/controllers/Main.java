@@ -1,5 +1,6 @@
 package com.radgroup.cinemahallticketmanagementsystem.controllers;
 
+import javafx.beans.binding.Bindings;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,6 +9,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 
 import java.io.IOException;
+
+import static com.radgroup.cinemahallticketmanagementsystem.App.NameOfTheLogedUser;
 
 public class Main implements Cont{
     @FXML
@@ -43,7 +46,7 @@ public class Main implements Cont{
         movies = loadTabContent(MoviesTab, "Movies");
         customers = loadTabContent(CustomersTab, "Customers");
         emp = loadTabContent(EmployeesTab, "Employees");
-        myProfile = loadTabContent(MyProfileTab, "My_Profile");
+        myProfile = loadTabContent(MyProfileTab, "MyProfile");
         isInizialized = true;
 
     }
@@ -108,8 +111,7 @@ public class Main implements Cont{
 
     @Override
     public void setView(Object data) {
-        if (data instanceof String) {
-            welcome.setText("Welcome "+(String) data); // Set the username on the label
-        }
+        welcome.textProperty().bind(Bindings.concat("Welcome ", NameOfTheLogedUser));
+//        welcome.textProperty().bind(NameOfTheLogedUser);
     }
 }
