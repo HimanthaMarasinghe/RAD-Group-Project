@@ -15,7 +15,16 @@ import java.util.Optional;
 public class Employees extends CoreController implements Cont{
 
     @FXML
-    private TableColumn<User, String> empCol;
+    private TableColumn<User, String> empUsernameCol;
+
+    @FXML
+    private TableColumn<User, String> empAddCol;
+
+    @FXML
+    private TableColumn<User, String> empNameCol;
+
+    @FXML
+    private TableColumn<User, String> empPhoneCol;
 
     @FXML
     private TableView<User> empTable;
@@ -30,14 +39,19 @@ public class Employees extends CoreController implements Cont{
 
         //ToDo : This code block is hard coded to create initial data. Should be removed after CustomerDOBImpl class is created
         testUsersList.clear();
-        testUsersList.add(new User("TestUser", "PPP", "Emp"));
-        testUsersList.add(new User("TestUser", "PPP", "Emp"));
-        testUsersList.add(new User("TestUser", "PPP", "Emp"));
-        testUsersList.add(new User("TestUser", "PPP", "Emp"));
+        testUsersList.add(new User("TestUser", "PPP", "Emp", "0987654321"));
+        testUsersList.add(new User("TestUser", "PPP", "Emp", "0987654321"));
+        testUsersList.add(new User("TestUser", "PPP", "Emp", "0987654321"));
+        testUsersList.add(new User("TestUser", "PPP", "Emp", "0987654321"));
+        testUsersList.add(new User("TestUser", "PPP", "Emp", "0987654321"));
 
 
 
-        empCol.setCellValueFactory(new PropertyValueFactory<User, String>("username"));
+        empUsernameCol.setCellValueFactory(new PropertyValueFactory<User, String>("username"));
+        empNameCol.setCellValueFactory(new PropertyValueFactory<User, String>("name"));
+        empAddCol.setCellValueFactory(new PropertyValueFactory<User, String>("address"));
+        empPhoneCol.setCellValueFactory(new PropertyValueFactory<User, String>("phone"));
+
 
         empList = FXCollections.observableArrayList();
 //        empList.addAll();
@@ -79,6 +93,8 @@ public class Employees extends CoreController implements Cont{
         }
         else {
             System.out.println("Updating User");
+            showDialogBox("UpdateEmployee","Update Employee", selectedUser);
+            refresh();
         }
     }
 
@@ -99,6 +115,7 @@ public class Employees extends CoreController implements Cont{
                 Alert deleteAlert = new Alert(Alert.AlertType.INFORMATION);
                 deleteAlert.setTitle("Delete");
                 deleteAlert.setContentText(selectedUser.getUsername() + " has been deleted successfully");
+                deleteAlert.show();
             }
         }
         refresh();

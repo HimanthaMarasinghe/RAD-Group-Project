@@ -43,7 +43,7 @@ public class UpdateCustomer extends dialogBox{
         updCusDoB.setValue(curentCustomer.getDateOfBirth());
 
 
-        //ToDo : Should be removed
+        //ToDo : Should be removed. This method is here because Arraylists does not support updates
         testCusList.remove(curentCustomer);
     }
 }
