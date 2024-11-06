@@ -1,14 +1,15 @@
 
 package com.radgroup.cinemahallticketmanagementsystem.models;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class   Customer {
     private String name;
     private String phone;
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
 
-    public Customer(String name, String phone, Date dateOfBirth) {
+    public Customer(String name, String phone, LocalDate dateOfBirth) {
         this.name = name;
         this.phone = phone;
         this.dateOfBirth = dateOfBirth;
@@ -31,11 +32,11 @@ public class   Customer {
         this.phone = phone;
     }
 
-    public Date getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 }

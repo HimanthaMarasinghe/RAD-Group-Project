@@ -12,11 +12,4 @@ public class NewTicket extends dialogBox{
         dialog.setResult(ButtonType.OK); // Set result to OK
         dialog.close();
     }
-
-    @FXML
-    public void Cancel(ActionEvent actionEvent) {
-        System.out.println("Cancel button clicked");
-        dialog.setResult(ButtonType.CANCEL);
-        dialog.close();
-    }
 }

@@ -11,10 +11,4 @@ public class NewEmployee extends dialogBox {
         dialog.setResult(ButtonType.OK);
         dialog.close();
     }
-
-    @FXML
-    void cancel(ActionEvent event) {
-        dialog.setResult(ButtonType.CANCEL);
-        dialog.close();
-    }
 }
