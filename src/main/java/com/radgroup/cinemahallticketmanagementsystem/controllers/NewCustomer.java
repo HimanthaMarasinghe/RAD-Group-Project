@@ -27,7 +27,10 @@ public class NewCustomer extends dialogBox{
         String name = NewCusName.getText();
         String phone = NewCusPhone.getText();
         LocalDate dob = newCusDOB.getValue();
+
+        //Add customer in to the DB
         testCusList.add(new Customer(name, phone, dob));
+
         dialog.setResult(ButtonType.OK);
         dialog.close();
     }

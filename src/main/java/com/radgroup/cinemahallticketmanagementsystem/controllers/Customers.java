@@ -44,21 +44,20 @@ public class Customers extends CoreController implements Cont{
         testCusList.add(new Customer("Fread","1234567890",  date));
         testCusList.add(new Customer("Shagy","1234567890",  date));
 
-
         cusNameCol.setCellValueFactory(new PropertyValueFactory<Customer, String>("name"));
         cusPhoneCol.setCellValueFactory(new PropertyValueFactory<Customer, String>("phone"));
         cusDobCol.setCellValueFactory(new PropertyValueFactory<Customer, String>("dateOfBirth"));
 
         CusList = FXCollections.observableArrayList();
-        CusList.addAll();
+//        CusList.addAll();
 
         cusTable.setItems(CusList);
-        CusList.addAll(getAllCustomers());
     }
 
     @Override
     public void setView(Object data) {
         System.out.println("Customer view");
+        refresh();
     }
 
     @FXML
@@ -121,7 +120,7 @@ public class Customers extends CoreController implements Cont{
 
     }
 
-    //This method should be deleted and similar method should be implemented in a DAO class.
+    //ToDo : This method should be deleted and similar method should be implemented in a DAO class.
     private ArrayList<Customer> getAllCustomers() {
         return testCusList;
     }

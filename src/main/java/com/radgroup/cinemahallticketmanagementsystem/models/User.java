@@ -11,6 +11,11 @@ public class User {
         this.role = role;
     }
 
+    //This is a special case for user.
+    public User(String username) {
+        this.username = username;
+    }
+
     public String getUsername() {
 
         return username;
