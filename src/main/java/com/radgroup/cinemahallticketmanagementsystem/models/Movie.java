@@ -1,14 +1,16 @@
 package com.radgroup.cinemahallticketmanagementsystem.models;
 
+import java.time.LocalDate;
+
 public class Movie {
 
     private String movieId;
     private String movieName;
-    private int duration;
+    private String duration;
     private int price;
 
 
-    public Movie(String movieId, String movieName, int duration, int price) {
+    public Movie(String movieId, String movieName, String duration, int price) {
         this.movieId = movieId;
         this.movieName = movieName;
         this.duration = duration;
@@ -32,11 +34,11 @@ public class Movie {
         this.movieName = movieName;
     }
 
-    public int getDuration() {
+    public String getDuration() {
         return duration;
     }
 
-    public void setDuration(int duration) {
+    public void setDuration(String duration) {
         this.duration = duration;
     }
 
