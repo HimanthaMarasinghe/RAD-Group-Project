@@ -18,7 +18,7 @@ public class ShowTimeDAOImpl implements ShowTimeDAO {
             String sql = "INSERT INTO showtime VALUES (?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, showtime.getShowid());
-            statement.setDate(2, new java.sql.Date(showtime.getDate().getTime()));
+            statement.setDate(2, java.sql.Date.valueOf(showtime.getDate()));
             statement.setString(3, showtime.getTimeslot());
             statement.setString(4, showtime.getMovieid());
             statement.executeUpdate();
@@ -57,7 +57,7 @@ public class ShowTimeDAOImpl implements ShowTimeDAO {
             if (resultSet.next()) {
                 ShowTime showtime = new ShowTime(
                         resultSet.getString("sid"),
-                        resultSet.getDate("date"),
+                        resultSet.getDate("date").toLocalDate(),
                         resultSet.getString("timeslot"),
                         resultSet.getString("mid"));
                 return showtime;
@@ -68,18 +68,18 @@ public class ShowTimeDAOImpl implements ShowTimeDAO {
         return null;
     }
 
-    public ArrayList<ShowTime> listAllShowTimesForMovie(int movieId) {
+    public ArrayList<ShowTime> listAllShowTimesForMovie(String movieId) {
         ArrayList<ShowTime> showtimes = new ArrayList<>();
         try (Connection connection = Database.getConnection()) {
             String sql = "SELECT * FROM showtime WHERE mid = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, movieId);
+            statement.setString(1, movieId);
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
                 ShowTime showtime = new ShowTime(
                         resultSet.getString("sid"),
-                        resultSet.getDate("date"),
+                        resultSet.getDate("date").toLocalDate(),
                         resultSet.getString("timeslot"),
                         resultSet.getString("mid")
                 );
@@ -96,7 +96,7 @@ public class ShowTimeDAOImpl implements ShowTimeDAO {
         try (Connection connection = Database.getConnection()) {
             String sql = "UPDATE showtime SET date = ?, timeslot = ? WHERE sid = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setDate(1, new java.sql.Date(showtime.getDate().getTime()));
+            statement.setDate(1, java.sql.Date.valueOf(showtime.getDate()));
             statement.setString(2, showtime.getTimeslot());
             statement.setString(3, showtime.getShowid());
             statement.executeUpdate();
