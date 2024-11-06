@@ -359,7 +359,7 @@
                   <HBox alignment="CENTER" prefHeight="74.0" prefWidth="266.0" spacing="20.0">
                      <children>
                         <Button mnemonicParsing="false" onAction="#addNewTicket" prefWidth="80.0" text="Add Ticket" />
-                        <Button layoutX="107.0" layoutY="35.0" mnemonicParsing="false" onAction="#Cancel" prefHeight="26.0" prefWidth="80.0" text="Cancel" />
+                        <Button layoutX="107.0" layoutY="35.0" mnemonicParsing="false" onAction="#cancel" prefHeight="26.0" prefWidth="80.0" text="Cancel" />
                      </children>
                   </HBox>
                </children>

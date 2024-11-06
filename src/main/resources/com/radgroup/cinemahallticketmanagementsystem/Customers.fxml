@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -9,12 +11,20 @@
 
 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="390.0" prefWidth="578.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.radgroup.cinemahallticketmanagementsystem.controllers.Customers">
     <children>
-    <TableView layoutX="159.0" layoutY="98.0" prefHeight="371.2" prefWidth="600.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="80.0">
+    <TableView fx:id="cusTable" layoutX="159.0" layoutY="98.0" prefHeight="371.2" prefWidth="600.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="80.0">
         <columns>
-        <TableColumn minWidth="100.0" prefWidth="252.80001199245453" text="Name" />
-        <TableColumn minWidth="84.79997253417969" prefWidth="161.5999755859375" text="Phone Number" />
-            <TableColumn minWidth="143.19992065429688" prefWidth="143.19992065429688" text="Date of Birth" />
+        <TableColumn fx:id="cusNameCol" minWidth="100.0" prefWidth="252.80001199245453" text="Name" />
+        <TableColumn fx:id="cusPhoneCol" minWidth="84.79997253417969" prefWidth="161.5999755859375" text="Phone Number" />
+            <TableColumn fx:id="cusDobCol" minWidth="143.19992065429688" prefWidth="143.19992065429688" text="Date of Birth" />
         </columns>
+         <contextMenu>
+            <ContextMenu>
+              <items>
+                  <MenuItem mnemonicParsing="false" text="Update Customer" onAction="#updateCus"/>
+                  <MenuItem mnemonicParsing="false" text="Delete Customer" onAction="#deleteCus"/>
+              </items>
+            </ContextMenu>
+         </contextMenu>
     </TableView>
       <Button layoutX="145.0" layoutY="14.0" mnemonicParsing="false" onAction="#addNewCustomer" text="Add New Customers" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
       <Label layoutX="28.0" layoutY="55.0" text="Registered Customers" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="50.0">
@@ -22,5 +32,6 @@
             <Font size="18.0" />
          </font>
       </Label>
+      <Button layoutX="505.0" layoutY="52.0" mnemonicParsing="false" onAction="#refresh" prefWidth="124.8" text="Refresh List" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="45.0" />
     </children>
 </AnchorPane>
