@@ -7,8 +7,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.WindowEvent;
-import javafx.scene.input.MouseEvent;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -38,11 +36,11 @@ public class Customers extends CoreController implements Cont{
 
         //ToDo : This code block is hard coded to create initial data. Should be removed after CustomerDOBImpl class is created
         LocalDate date = LocalDate.now();
-        testCusList.add(new Customer("John","1234567890",  date));
-        testCusList.add(new Customer("Marry","1234567890",  date));
-        testCusList.add(new Customer("Jane","1234567890",  date));
-        testCusList.add(new Customer("Fread","1234567890",  date));
-        testCusList.add(new Customer("Shagy","1234567890",  date));
+        testCusList.add(new Customer("11","John","1234567890",  date));
+        testCusList.add(new Customer("11","Marry","1234567890",  date));
+        testCusList.add(new Customer("11","Jane","1234567890",  date));
+        testCusList.add(new Customer("11","Fread","1234567890",  date));
+        testCusList.add(new Customer("11","Shagy","1234567890",  date));
 
         cusNameCol.setCellValueFactory(new PropertyValueFactory<Customer, String>("name"));
         cusPhoneCol.setCellValueFactory(new PropertyValueFactory<Customer, String>("phone"));

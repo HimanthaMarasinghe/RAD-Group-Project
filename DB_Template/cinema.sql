@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 04, 2024 at 07:38 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Generation Time: Nov 07, 2024 at 10:52 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,53 +24,42 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `customer`
---
-
-CREATE TABLE `customer` (
-  `cnum` int(11) NOT NULL,
-  `cname` varchar(50) NOT NULL,
-  `cdob` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `movie`
 --
 
 CREATE TABLE `movie` (
-  `mid` int(11) NOT NULL,
-  `mname` varchar(100) NOT NULL,
-  `duration` int(11) NOT NULL
+  `Mid` varchar(5) NOT NULL,
+  `MName` varchar(20) NOT NULL,
+  `Duration` varchar(10) NOT NULL,
+  `price` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `showtime`
+-- Dumping data for table `movie`
 --
 
-CREATE TABLE `showtime` (
-  `sid` int(11) NOT NULL,
-  `date` date NOT NULL,
-  `timeslot` time NOT NULL,
-  `mid` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `ticket`
---
-
-CREATE TABLE `ticket` (
-  `tid` int(11) NOT NULL,
-  `cnum` int(11) NOT NULL,
-  `mid` int(11) NOT NULL,
-  `sid` int(11) NOT NULL,
-  `username` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+INSERT INTO `movie` (`Mid`, `MName`, `Duration`, `price`) VALUES
+('AEG', 'Avengers End Game', '3 hours', 800),
+('AM1', 'Ant-Man', '1 hour 57 ', 700),
+('AM2', 'Ant-Man and The Wasp', '1 hour 58 ', 700),
+('AV1', 'The Avengers', '2 hours 23', 800),
+('AV2', 'Avengers: Age of Ult', '2 hours 21', 800),
+('AV3', 'Avengers: Infinity W', '2 hours 29', 850),
+('BP', 'Black Panther', '2 hours 14', 750),
+('CA1', 'Captain America: The', '2 hours 4 ', 700),
+('CA2', 'Captain America: The', '2 hours 16', 750),
+('CA3', 'Captain America: Civ', '2 hours 27', 800),
+('DRS', 'Doctor Strange', '1 hour 55 ', 750),
+('GOG1', 'Guardians of the Gal', '2 hours 1 ', 750),
+('GOG2', 'Guardians of the Gal', '2 hours 16', 750),
+('HUL', 'The Incredible Hulk', '1 hour 52 ', 650),
+('IM1', 'Iron Man', '2 hours 6 ', 700),
+('IM2', 'Iron Man 2', '2 hours 4 ', 700),
+('IM3', 'Iron Man 3', '2 hours 10', 750),
+('SMH', 'Spider-Man: Homecomi', '2 hours 13', 750),
+('TH1', 'Thor', '1 hour 55 ', 650),
+('TH2', 'Thor: The Dark World', '1 hour 52 ', 650),
+('TH3', 'Thor: Ragnarok', '2 hours 10', 750);
 
 -- --------------------------------------------------------
 
@@ -79,60 +68,37 @@ CREATE TABLE `ticket` (
 --
 
 CREATE TABLE `users` (
-  `username` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  `role` varchar(50) NOT NULL
+  `username` varchar(5) NOT NULL,
+  `name` varchar(30) NOT NULL,
+  `address` varchar(50) NOT NULL,
+  `phone` varchar(10) NOT NULL,
+  `password` varchar(12) NOT NULL,
+  `role` enum('Manager','Employee') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`username`, `name`, `address`, `phone`, `password`, `role`) VALUES
+('a', 'Sam Smith', 'New York', '0123456789', 'a', 'Manager'),
+('b', 'Peter Parker', 'New York', '0192837465', 'b', 'Employee');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `customer`
---
-ALTER TABLE `customer`
-  ADD PRIMARY KEY (`cnum`);
-
---
 -- Indexes for table `movie`
 --
 ALTER TABLE `movie`
-  ADD PRIMARY KEY (`mid`);
+  ADD PRIMARY KEY (`Mid`);
 
 --
--- Indexes for table `showtime`
+-- Indexes for table `users`
 --
-ALTER TABLE `showtime`
-  ADD PRIMARY KEY (`sid`);
-
---
--- Indexes for table `ticket`
---
-ALTER TABLE `ticket`
-  ADD PRIMARY KEY (`tid`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `movie`
---
-ALTER TABLE `movie`
-  MODIFY `mid` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `showtime`
---
-ALTER TABLE `showtime`
-  MODIFY `sid` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ticket`
---
-ALTER TABLE `ticket`
-  MODIFY `tid` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`username`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

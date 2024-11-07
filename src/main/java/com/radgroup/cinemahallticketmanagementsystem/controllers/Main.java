@@ -7,10 +7,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 
 import java.io.IOException;
 
 import static com.radgroup.cinemahallticketmanagementsystem.App.NameOfTheLogedUser;
+import static com.radgroup.cinemahallticketmanagementsystem.App.isManager;
 
 public class Main implements Cont{
     @FXML
@@ -29,9 +31,12 @@ public class Main implements Cont{
     private Tab MyProfileTab;
 
     @FXML
+    private TabPane mainTabPane;
+
+    @FXML
     private Label welcome;
 
-
+    //Controllers for each tab;
     private Home home;
     private Movies movies;
     private Customers customers;
@@ -45,7 +50,12 @@ public class Main implements Cont{
         home = loadTabContent(HomeTab, "Home");
         movies = loadTabContent(MoviesTab, "Movies");
         customers = loadTabContent(CustomersTab, "Customers");
-        emp = loadTabContent(EmployeesTab, "Employees");
+
+        if(isManager)
+            emp = loadTabContent(EmployeesTab, "Employees");
+        else
+            mainTabPane.getTabs().remove(EmployeesTab);
+
         myProfile = loadTabContent(MyProfileTab, "MyProfile");
         isInizialized = true;
 
@@ -66,7 +76,7 @@ public class Main implements Cont{
 
     @FXML
     private void SelectEmpTab(Event event) {
-        if(EmployeesTab.isSelected()) {
+        if(EmployeesTab.isSelected() && isManager) {
             System.out.println("Select Employee Tab");
             System.out.println(emp);
             emp.setView(null);

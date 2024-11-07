@@ -10,7 +10,7 @@ public class   Customer {
     private String phone;
     private LocalDate dateOfBirth;
 
-    public Customer(String name, String phone, LocalDate dateOfBirth) {
+    public Customer(String customerId, String name, String phone, LocalDate dateOfBirth) {
         this.customerId = customerId;
         this.name = name;
         this.phone = phone;

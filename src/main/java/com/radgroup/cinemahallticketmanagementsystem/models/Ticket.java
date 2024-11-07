@@ -23,7 +23,7 @@ public class Ticket {
         return showTimeId;
     }
 
-    public int setShowTimeId(int newShowTimeId){
+    public void setShowTimeId(int newShowTimeId){
         this.showTimeId = newShowTimeId;
     }
 
@@ -31,7 +31,7 @@ public class Ticket {
         return customerId;
     }
 
-    public int setCustomerId(int newCustomerId){
+    public void setCustomerId(int newCustomerId){
         this.customerId = newCustomerId;
     }
 
@@ -39,7 +39,7 @@ public class Ticket {
         return empUsername;
     }
 
-    public String setEmpUsername(String newEmpUsername){
+    public void setEmpUsername(String newEmpUsername){
         this.empUsername = newEmpUsername;
     }
 
@@ -47,7 +47,7 @@ public class Ticket {
         return seatNo;
     }
 
-    public String setSeatNo(String newSeatNo){
+    public void setSeatNo(String newSeatNo){
         this.seatNo = newSeatNo;
     }
 }
