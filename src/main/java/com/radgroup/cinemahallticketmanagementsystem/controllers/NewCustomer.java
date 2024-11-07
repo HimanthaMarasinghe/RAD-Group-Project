@@ -1,5 +1,7 @@
 package com.radgroup.cinemahallticketmanagementsystem.controllers;
 
+import com.radgroup.cinemahallticketmanagementsystem.dao.CustomerDAO;
+import com.radgroup.cinemahallticketmanagementsystem.dao.CustomerDAOImpl;
 import com.radgroup.cinemahallticketmanagementsystem.models.Customer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,8 +30,10 @@ public class NewCustomer extends dialogBox{
         String phone = NewCusPhone.getText();
         LocalDate dob = newCusDOB.getValue();
 
-        //Add customer in to the DB
-        testCusList.add(new Customer("1",name, phone, dob));
+        //ToDo : Add customer in to the DB
+//        testCusList.add(new Customer("1",name, phone, dob));
+        CustomerDAO CDAO = new CustomerDAOImpl();
+        CDAO.addCustomer(new Customer(0, name, phone, dob));
 
         dialog.setResult(ButtonType.OK);
         dialog.close();

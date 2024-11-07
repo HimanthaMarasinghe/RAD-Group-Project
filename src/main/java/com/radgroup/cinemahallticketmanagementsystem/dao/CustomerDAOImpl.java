@@ -14,12 +14,11 @@ public class CustomerDAOImpl implements CustomerDAO {
     @Override
     public void addCustomer(Customer customer) {
         try (Connection connection = Database.getConnection()) {
-            String sql = "INSERT INTO customer (customerId, name, phone, dateOfBirth) VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO customer (name, phone, dateOfBirth) VALUES (?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, customer.getCustomerId());
-            statement.setString(2, customer.getName());
-            statement.setString(3, customer.getPhone());
-            statement.setDate(4, java.sql.Date.valueOf(customer.getDateOfBirth())); // Convert LocalDate to java.sql.Date
+            statement.setString(1, customer.getName());
+            statement.setString(2, customer.getPhone());
+            statement.setDate(3, java.sql.Date.valueOf(customer.getDateOfBirth())); // Convert LocalDate to java.sql.Date
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -34,7 +33,7 @@ public class CustomerDAOImpl implements CustomerDAO {
             statement.setString(1, customer.getName());
             statement.setString(2, customer.getPhone());
             statement.setDate(3, java.sql.Date.valueOf(customer.getDateOfBirth())); // Convert LocalDate to java.sql.Date
-            statement.setString(4, customer.getCustomerId());
+            statement.setInt(4, customer.getCustomerId());
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -42,11 +41,11 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    public void deleteCustomer(String customerId) {
+    public void deleteCustomer(int customerId) {
         try (Connection connection = Database.getConnection()) {
             String sql = "DELETE FROM customer WHERE customerId = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, customerId);
+            statement.setInt(1, customerId);
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -63,7 +62,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 
             if (resultSet.next()) {
                 return new Customer(
-                        resultSet.getString("customerId"),
+                        resultSet.getInt("customerId"),
                         resultSet.getString("name"),
                         resultSet.getString("phone"),
                         resultSet.getDate("dateOfBirth").toLocalDate() // Convert java.sql.Date to LocalDate
@@ -85,7 +84,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 
             while (resultSet.next()) {
                 Customer customer = new Customer(
-                        resultSet.getString("customerId"),
+                        resultSet.getInt("customerId"),
                         resultSet.getString("name"),
                         resultSet.getString("phone"),
                         resultSet.getDate("dateOfBirth").toLocalDate() // Convert java.sql.Date to LocalDate
