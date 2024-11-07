@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 07, 2024 at 03:57 PM
+-- Generation Time: Nov 07, 2024 at 04:35 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -20,6 +20,44 @@ SET time_zone = "+00:00";
 --
 -- Database: `cinema`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customer`
+--
+
+CREATE TABLE `customer` (
+  `customerId` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `phone` varchar(10) NOT NULL,
+  `dateOfBirth` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`customerId`, `name`, `phone`, `dateOfBirth`) VALUES
+(1, 'John Doe', '1234567890', '1990-01-01'),
+(2, 'Jane Smith', '1234567891', '1985-02-14'),
+(3, 'Mike Brown', '1234567892', '1992-03-22'),
+(4, 'Alice Johnson', '1234567893', '1993-04-18'),
+(5, 'Chris Lee', '1234567894', '1988-05-30'),
+(6, 'Karen White', '1234567895', '1991-06-15'),
+(7, 'Dave Black', '1234567896', '1984-07-25'),
+(8, 'Eva Green', '1234567897', '1995-08-08'),
+(9, 'Paul Scott', '1234567898', '1990-09-12'),
+(10, 'Laura Hill', '1234567899', '1996-10-05'),
+(11, 'Tom Adams', '1234567800', '1982-11-09'),
+(12, 'Nancy Brown', '1234567801', '1989-12-24'),
+(13, 'Alex Turner', '1234567802', '1994-01-10'),
+(14, 'Sara Long', '1234567803', '1987-02-20'),
+(16, 'Sophia Rose', '1234567805', '1992-04-01'),
+(17, 'Liam Miller', '1234567806', '1985-05-17'),
+(18, 'Olivia Clark', '1234567807', '1991-06-06'),
+(19, 'Emma Lewis', '1234567808', '1983-07-04'),
+(20, 'James Walker', '1234567809', '1990-08-28');
 
 -- --------------------------------------------------------
 
@@ -80,6 +118,12 @@ INSERT INTO `users` (`username`, `name`, `address`, `phone`, `password`, `role`)
 --
 
 --
+-- Indexes for table `customer`
+--
+ALTER TABLE `customer`
+  ADD PRIMARY KEY (`customerId`);
+
+--
 -- Indexes for table `movie`
 --
 ALTER TABLE `movie`
@@ -90,6 +134,16 @@ ALTER TABLE `movie`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`username`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `customer`
+--
+ALTER TABLE `customer`
+  MODIFY `customerId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

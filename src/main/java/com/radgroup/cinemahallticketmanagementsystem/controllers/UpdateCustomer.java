@@ -1,5 +1,7 @@
 package com.radgroup.cinemahallticketmanagementsystem.controllers;
 
+import com.radgroup.cinemahallticketmanagementsystem.dao.CustomerDAO;
+import com.radgroup.cinemahallticketmanagementsystem.dao.CustomerDAOImpl;
 import com.radgroup.cinemahallticketmanagementsystem.models.Customer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,6 +24,8 @@ public class UpdateCustomer extends dialogBox{
     @FXML
     private DatePicker updCusDoB;
 
+    private int currentCustomerID;
+
     @FXML
     void updateCustomer(ActionEvent event) {
         String name = updCusName.getText();
@@ -29,7 +33,10 @@ public class UpdateCustomer extends dialogBox{
         LocalDate dob = updCusDoB.getValue();
 
         //ToDo : Here it just mimic the update behaviour with a combination of delete and add methods. Should be properly implemented with the DAO file.
-        testCusList.add(new Customer("1", name, phone, dob));
+//        testCusList.add(new Customer("1", name, phone, dob));
+
+        CustomerDAO CDAO = new CustomerDAOImpl();
+        CDAO.updateCustomer(new Customer(currentCustomerID, name, phone, dob));
 
         dialog.setResult(ButtonType.OK);
         dialog.close();
@@ -38,6 +45,7 @@ public class UpdateCustomer extends dialogBox{
     @Override
     public void setDialogBox(Object dataObject){
         Customer curentCustomer = (Customer) dataObject;
+        currentCustomerID = curentCustomer.getCustomerId();
         updCusName.setText(curentCustomer.getName());
         updCusPhone.setText(curentCustomer.getPhone());
         updCusDoB.setValue(curentCustomer.getDateOfBirth());

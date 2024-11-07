@@ -1,5 +1,7 @@
 package com.radgroup.cinemahallticketmanagementsystem.controllers;
 
+import com.radgroup.cinemahallticketmanagementsystem.dao.CustomerDAO;
+import com.radgroup.cinemahallticketmanagementsystem.dao.CustomerDAOImpl;
 import com.radgroup.cinemahallticketmanagementsystem.models.Customer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -34,13 +36,13 @@ public class Customers extends CoreController implements Cont{
     public void initialize() {
         System.out.println("Customers Initializes");
 
-        //ToDo : This code block is hard coded to create initial data. Should be removed after CustomerDOBImpl class is created
-        LocalDate date = LocalDate.now();
-        testCusList.add(new Customer("11","John","1234567890",  date));
-        testCusList.add(new Customer("11","Marry","1234567890",  date));
-        testCusList.add(new Customer("11","Jane","1234567890",  date));
-        testCusList.add(new Customer("11","Fread","1234567890",  date));
-        testCusList.add(new Customer("11","Shagy","1234567890",  date));
+//        //ToDo : This code block is hard coded to create initial data. Should be removed after CustomerDOBImpl class is created
+//        LocalDate date = LocalDate.now();
+//        testCusList.add(new Customer("11","John","1234567890",  date));
+//        testCusList.add(new Customer("11","Marry","1234567890",  date));
+//        testCusList.add(new Customer("11","Jane","1234567890",  date));
+//        testCusList.add(new Customer("11","Fread","1234567890",  date));
+//        testCusList.add(new Customer("11","Shagy","1234567890",  date));
 
         cusNameCol.setCellValueFactory(new PropertyValueFactory<Customer, String>("name"));
         cusPhoneCol.setCellValueFactory(new PropertyValueFactory<Customer, String>("phone"));
@@ -48,7 +50,6 @@ public class Customers extends CoreController implements Cont{
 
         CusList = FXCollections.observableArrayList();
 //        CusList.addAll();
-
         cusTable.setItems(CusList);
     }
 
@@ -75,7 +76,9 @@ public class Customers extends CoreController implements Cont{
 
     private void refresh() {
         CusList.clear();
-        CusList.addAll(getAllCustomers());
+
+        CustomerDAO CDAO = new CustomerDAOImpl();
+        CusList.addAll(CDAO.getAllCustomers());
     }
 
     @FXML
@@ -92,8 +95,11 @@ public class Customers extends CoreController implements Cont{
             Optional<ButtonType> answer = alert.showAndWait();
             if(answer.get() == ButtonType.OK){
 
-                //ToDo : This method should be replaced with the DOA method to delete Customers.
-                testCusList.remove(cusSelected);
+//                //ToDo : This method should be replaced with the DOA method to delete Customers.
+//                testCusList.remove(cusSelected);
+
+                CustomerDAO CDAO = new CustomerDAOImpl();
+                CDAO.deleteCustomer(cusSelected.getCustomerId());
 
                 Alert deleteAlert = new Alert(Alert.AlertType.INFORMATION);
                 deleteAlert.setTitle("Delete");
