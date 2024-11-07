@@ -4,7 +4,7 @@ import com.radgroup.cinemahallticketmanagementsystem.dao.ShowTimeDAO;
 import com.radgroup.cinemahallticketmanagementsystem.dao.ShowTimeDAOImpl;
 import com.radgroup.cinemahallticketmanagementsystem.models.ShowTime;
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -66,17 +66,9 @@ public class SeniruTestApp {
         System.out.print("Enter Movie ID: ");
         String movieId = scanner.nextLine();
 
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        java.sql.Date sqlDate = null;
-        try {
-            java.util.Date utilDate = formatter.parse(dateString);
-            sqlDate = new java.sql.Date(utilDate.getTime());
-        } catch (ParseException e) {
-            System.out.println("Invalid date format. Please enter in YYYY-MM-DD format.");
-            return;
-        }
-
-        ShowTime showTime = new ShowTime(showId, sqlDate, timeSlot, movieId);
+        LocalDate localDate = LocalDate.parse(dateString);
+        java.sql.Date sqlDate = java.sql.Date.valueOf(localDate);
+        ShowTime showTime = new ShowTime(showId, sqlDate.toLocalDate(), timeSlot, movieId);
 
         if (showTimeDAO.addShowTime(showTime)) {
             System.out.println("ShowTime added successfully!");
@@ -111,7 +103,7 @@ public class SeniruTestApp {
 
     private static void listShowTimesForMovie(ShowTimeDAO showTimeDAO, Scanner scanner) {
         System.out.print("Enter Movie ID: ");
-        int movieId = scanner.nextInt();
+        String movieId = scanner.next();
         scanner.nextLine(); // Consume newline character
 
         ArrayList<ShowTime> showTimes = showTimeDAO.listAllShowTimesForMovie(movieId);
@@ -136,23 +128,19 @@ public class SeniruTestApp {
             return;
         }
 
-        System.out.print("Enter new Date (YYYY-MM-DD): ");
+        System.out.print("Enter new Date (YYYY-MM-DD) (Optional, press Enter to keep existing): ");
         String newDate = scanner.nextLine();
+
+        if (!newDate.isEmpty()) { // Check if user entered a new date
+            LocalDate localDate = LocalDate.parse(newDate);
+            java.sql.Date sqlDate = java.sql.Date.valueOf(localDate);
+            existingShowTime.setDate(sqlDate.toLocalDate());
+        }
+
         System.out.print("Enter new Timeslot: ");
         String newTimeSlot = scanner.nextLine();
 
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        java.sql.Date NewDate = null;
-        try {
-            java.util.Date utilDate = formatter.parse(newDate);
-            NewDate = new java.sql.Date(utilDate.getTime());
-        } catch (ParseException e) {
-            System.out.println("Invalid date format. Please enter in YYYY-MM-DD format.");
-            return;
-        }
-
-        existingShowTime.setDate(NewDate);
-        existingShowTime.setTimeslot(newTimeSlot);
+        existingShowTime.setTimeslot(newTimeSlot); // Update timeslot regardless
 
         if (showTimeDAO.updateShowTime(existingShowTime)) {
             System.out.println("ShowTime updated successfully!");

@@ -1,14 +1,14 @@
 package com.radgroup.cinemahallticketmanagementsystem.models;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class ShowTime {
     private String showid;
-    private Date date;
+    private LocalDate date;
     private String timeslot;
     private String movieid;
 
-    public ShowTime(String showid, Date date, String timeslot, String movieid) {
+    public ShowTime(String showid, LocalDate date, String timeslot, String movieid) {
         this.showid = showid;
         this.date = date;
         this.timeslot = timeslot;
@@ -23,11 +23,11 @@ public class ShowTime {
         this.showid = showid;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
