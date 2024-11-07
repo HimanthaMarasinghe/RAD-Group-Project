@@ -11,7 +11,7 @@
 
 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="390.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.radgroup.cinemahallticketmanagementsystem.controllers.Employees">
     <children>
-    <TableView fx:id="empTable" layoutX="159.0" layoutY="98.0" prefHeight="371.2" prefWidth="456.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="80.0">
+    <TableView fx:id="empTable" layoutX="159.0" layoutY="98.0" prefHeight="371.2" prefWidth="456.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="100.0">
         <columns>
         <TableColumn fx:id="empUsernameCol" minWidth="86.40005624294281" prefWidth="160.79996621608734" text="UserName" />
             <TableColumn fx:id="empNameCol" minWidth="0.0" prefWidth="127.19999694824219" text="Employee Name" />
@@ -34,5 +34,10 @@
          </font>
       </Label>
       <Button layoutX="452.0" layoutY="20.0" mnemonicParsing="false" onAction="#refreshEmpList" prefWidth="125.6" text="Refresh" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="45.0" />
+      <Label layoutX="20.0" layoutY="78.0" text="Right-click on any entry for more options" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="80.0">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>
