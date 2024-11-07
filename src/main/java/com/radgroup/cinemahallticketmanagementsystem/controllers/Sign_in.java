@@ -40,8 +40,12 @@ public class Sign_in {
                 User user = U.getUser(usernameInput);
                 if (user != null) {
                     if(user.getPassword().equals(passwordInput)) {
+
+                        //Setting global variables
                         App.userName = usernameInput;
                         App.NameOfTheLogedUser = new SimpleStringProperty(user.getName());
+                        App.isManager = user.getRole().equals("Manager");
+
                         SceneSwitcher.switchScene(event, "Main", null);
                     }
                     else{

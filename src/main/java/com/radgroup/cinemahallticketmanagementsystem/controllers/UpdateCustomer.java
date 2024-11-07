@@ -29,7 +29,7 @@ public class UpdateCustomer extends dialogBox{
         LocalDate dob = updCusDoB.getValue();
 
         //ToDo : Here it just mimic the update behaviour with a combination of delete and add methods. Should be properly implemented with the DAO file.
-        testCusList.add(new Customer(name, phone, dob));
+        testCusList.add(new Customer("1", name, phone, dob));
 
         dialog.setResult(ButtonType.OK);
         dialog.close();
