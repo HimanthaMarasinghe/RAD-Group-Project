@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 07, 2024 at 04:35 PM
+-- Generation Time: Nov 07, 2024 at 09:58 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -93,6 +93,37 @@ INSERT INTO `movie` (`Mid`, `MName`, `Duration`, `price`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `showtime`
+--
+
+CREATE TABLE `showtime` (
+  `sid` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `timeslot` varchar(20) NOT NULL,
+  `mid` varchar(5) NOT NULL,
+  `availableSeats` int(11) NOT NULL DEFAULT 200
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `showtime`
+--
+
+INSERT INTO `showtime` (`sid`, `date`, `timeslot`, `mid`, `availableSeats`) VALUES
+(27, '2024-11-08', '10:30 to 12:30', 'AM1', 200),
+(28, '2024-11-07', '10:30 to 12:30', 'AM1', 200),
+(29, '2024-11-06', '10:30 to 12:30', 'AM1', 200),
+(30, '2024-11-05', '10:30 to 12:30', 'AM1', 200),
+(31, '2024-11-04', '10:30 to 12:30', 'AM1', 200),
+(32, '2024-11-03', '10:30 to 12:30', 'AM1', 200),
+(33, '2024-11-02', '10:30 to 12:30', 'AM1', 200),
+(34, '2024-11-01', '10:30 to 12:30', 'AM1', 200),
+(35, '2024-11-11', '10:30 to 12:30', 'AM1', 200),
+(36, '2024-11-10', '10:30 to 12:30', 'AM1', 200),
+(37, '2024-11-09', '10:30 to 12:30', 'AM1', 200);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -130,6 +161,13 @@ ALTER TABLE `movie`
   ADD PRIMARY KEY (`Mid`);
 
 --
+-- Indexes for table `showtime`
+--
+ALTER TABLE `showtime`
+  ADD PRIMARY KEY (`sid`),
+  ADD UNIQUE KEY `date` (`date`,`timeslot`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -144,6 +182,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `customer`
   MODIFY `customerId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT for table `showtime`
+--
+ALTER TABLE `showtime`
+  MODIFY `sid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

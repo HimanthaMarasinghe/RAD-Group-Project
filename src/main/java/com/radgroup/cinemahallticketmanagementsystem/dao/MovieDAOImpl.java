@@ -91,6 +91,23 @@ public class MovieDAOImpl implements MovieDAO {
     }
 
     @Override
+    public ArrayList<String> getAllMovieIds() {
+        ArrayList<String> MovieIds = new ArrayList<>();
+        try (Connection connection = Database.getConnection()) {
+            String sql = "SELECT Mid FROM Movie ";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                MovieIds.add(resultSet.getString("Mid"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return MovieIds;
+    }
+
+    @Override
     public boolean updateMovie(Movie Movie, String previousId) {
         try (Connection connection = Database.getConnection()) {
             String sql = "UPDATE Movie SET MName = ?, duration = ?, price = ?, Mid = ? WHERE Mid = ?";

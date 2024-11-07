@@ -7,10 +7,12 @@ import com.radgroup.cinemahallticketmanagementsystem.util.Utility;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -40,19 +42,36 @@ public class NewMovie extends dialogBox {
     private java.io.File file;
 
     @FXML
+    private void handleTextInput(KeyEvent event) {
+        String inputText = newMovieIdField.getText();
+        if (inputText.length() > 5) {
+            newMovieIdField.setText(inputText.substring(0, 5));
+        }
+    }
+
+    @FXML
     void addNewMovie(ActionEvent event) {
         String id = newMovieIdField.getText();
         String name = newMovieNameField.getText();
         String duration = newDurationField.getText();
-        int price = Integer.parseInt(newTicketPriceField.getText());
-        Movie newMovie = new Movie(id, name, duration, price);
-        MovieDAO MDAO = new MovieDAOImpl();
-        MDAO.addMovie(newMovie);
+        String price = newTicketPriceField.getText();
 
-        Utility.SaveImage(newMovie.getmovieId(), file, "moviePosters");
+        if(id.trim().isEmpty() || name.trim().isEmpty() || duration.trim().isEmpty() || price.trim().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("Input fields cannot be empty");
+            alert.showAndWait();
+        }else{
+            int priceInt = Integer.parseInt(price);
+            Movie newMovie = new Movie(id, name, duration, priceInt);
+            MovieDAO MDAO = new MovieDAOImpl();
+            MDAO.addMovie(newMovie);
 
-        dialog.setResult(ButtonType.OK);
-        dialog.close();
+            Utility.SaveImage(newMovie.getmovieId(), file, "moviePosters");
+
+            dialog.setResult(ButtonType.OK);
+            dialog.close();
+        }
     }
 
     @FXML
