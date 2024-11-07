@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<DialogPane prefHeight="508.0" prefWidth="381.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.radgroup.cinemahallticketmanagementsystem.controllers.NewMovie">
+   <content>
+      <VBox alignment="BOTTOM_CENTER" prefHeight="499.0" prefWidth="381.0" spacing="10.0">
+         <children>
+            <ImageView fx:id="movieCardImage" fitHeight="249.0" fitWidth="316.0" pickOnBounds="true" preserveRatio="true" />
+            <Button mnemonicParsing="false" onAction="#handleSelectImage" prefHeight="26.0" prefWidth="180.0" text="Add Image" />
+            <HBox alignment="CENTER" prefHeight="27.0" prefWidth="349.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Movie ID" wrappingWidth="85.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="newMovieIdField" layoutX="257.0" layoutY="11.0" prefHeight="26.0" prefWidth="254.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="27.0" prefWidth="349.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Movie Name" wrappingWidth="85.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="newMovieNameField" prefHeight="26.0" prefWidth="254.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="27.0" prefWidth="349.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Duration" wrappingWidth="85.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="newDurationField" prefHeight="26.0" prefWidth="254.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="27.0" prefWidth="349.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Price" wrappingWidth="85.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="newTicketPriceField" prefHeight="26.0" prefWidth="254.0" />
+               </children>
+            </HBox>
+            <Button mnemonicParsing="false" onAction="#addNewMovie" prefWidth="180.0" text="Add" />
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </VBox>
+   </content>
+</DialogPane>

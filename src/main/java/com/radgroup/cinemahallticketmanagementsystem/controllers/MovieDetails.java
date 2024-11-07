@@ -1,19 +1,17 @@
 package com.radgroup.cinemahallticketmanagementsystem.controllers;
 
-import com.radgroup.cinemahallticketmanagementsystem.dao.ShowTimeDAO;
-import com.radgroup.cinemahallticketmanagementsystem.dao.ShowTimeDAOImpl;
+import com.radgroup.cinemahallticketmanagementsystem.dao.MovieDAO;
+import com.radgroup.cinemahallticketmanagementsystem.dao.MovieDAOImpl;
 import com.radgroup.cinemahallticketmanagementsystem.models.Movie;
 import com.radgroup.cinemahallticketmanagementsystem.models.ShowTime;
+import com.radgroup.cinemahallticketmanagementsystem.util.Utility;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 
-import java.net.URL;
 import java.time.LocalTime;
+import java.util.Optional;
 
 public class MovieDetails extends dialogBox {
     @FXML
@@ -43,6 +41,9 @@ public class MovieDetails extends dialogBox {
     @FXML
     private TextField ticketPriceField;
 
+    private Movie selectedMovie;
+    private Movies movieController;
+
     @FXML
     private void handleAddShowTimes(ActionEvent event) {
 
@@ -50,12 +51,32 @@ public class MovieDetails extends dialogBox {
 
     @FXML
     private void handleMovieDelete(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Delete Movie");
+        alert.setHeaderText("Are you sure you want to delete "+selectedMovie.getmovieName()+" ?");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
 
+            MovieDAO movieDAO = new MovieDAOImpl();
+            movieDAO.deleteMovie(selectedMovie.getmovieId());
+
+            Utility.deleteImage(selectedMovie.getmovieId(), "moviePosters");
+
+            Alert deletedAlert = new Alert(Alert.AlertType.INFORMATION);
+            deletedAlert.setTitle("Success");
+            deletedAlert.setHeaderText("Movie Deleted");
+            deletedAlert.setContentText("Movie "+selectedMovie.getmovieName()+" successfully deleted");
+            deletedAlert.show();
+            movieController.movieListRefresh();
+        }
+        dialog.close();
     }
 
     @FXML
     private void handleMovieUpdate(ActionEvent event) {
-
+        Object[] objectsToPass = {selectedMovie, movieController, this};
+        showDialogBox("UpdateMovie", "Update Movie Details", objectsToPass);
+        movieController.movieListRefresh();
     }
 
     @FXML
@@ -65,18 +86,15 @@ public class MovieDetails extends dialogBox {
 
     @Override
     public void setDialogBox(Object dataObject) {
-        Movie selectedMovie = (Movie) dataObject;
+        Object[] objectArray = (Object[]) dataObject;
+
+        selectedMovie = (Movie) objectArray[0];
+        movieController = (Movies) objectArray[1];
 //        ShowTimeDAO showTimeDAO = new ShowTimeDAOImpl();
         movieIdField.setText(selectedMovie.getmovieId());
         movieNameField.setText(selectedMovie.getmovieName());
         durationField.setText(selectedMovie.getDuration());
         ticketPriceField.setText(String.valueOf(selectedMovie.getPrice()));
-        URL imageURL = getClass().getResource("/com/radgroup/cinemahallticketmanagementsystem/MovieImages/"+selectedMovie.getmovieId()+".jpg");
-        if(imageURL == null) {
-            imageURL = getClass().getResource("/com/radgroup/cinemahallticketmanagementsystem/MovieImages/DefaultMoviePoster.png");
-        }
-        if(imageURL != null){
-            movieCardImage.setImage(new Image(imageURL.toExternalForm()));
-        }
+        movieCardImage.setImage(Utility.loadImage(selectedMovie.getmovieId(), "moviePosters"));
     }
 }

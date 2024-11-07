@@ -78,7 +78,7 @@ public class NojiTestApp {
                     int newPrice = scanner.nextInt();
 
                     Movie movieToUpdate = new Movie(updateId, newName, newDuration, newPrice);
-                    if (movieDAO.updateMovie(movieToUpdate)) {
+                    if (movieDAO.updateMovie(movieToUpdate, movieToUpdate.getmovieId())) {
                         System.out.println("Movie updated successfully!");
                     } else {
                         System.out.println("Failed to update movie.");

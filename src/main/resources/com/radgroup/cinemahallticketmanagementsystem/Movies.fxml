@@ -7,17 +7,23 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="390.0" prefWidth="578.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.radgroup.cinemahallticketmanagementsystem.controllers.Movies">
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="432.0" prefWidth="578.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.radgroup.cinemahallticketmanagementsystem.controllers.Movies">
     <children>
-      <Button layoutX="145.0" layoutY="14.0" mnemonicParsing="false" text="Add New Movies" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
-      <Label layoutX="28.0" layoutY="55.0" text="Now Showing" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="50.0">
+      <Button layoutX="145.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleAddNewMovie" text="Add New Movies" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+      <Label layoutX="28.0" layoutY="55.0" text="Now Showing" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="70.0">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <ScrollPane fx:id="movieScrloPane" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="80.0">
+      <ScrollPane fx:id="movieScrloPane" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="120.0">
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding></ScrollPane>
+      <Button layoutX="471.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleRefresh" prefWidth="106.4" text="Refresh List" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="45.0" />
+      <Label layoutX="20.0" layoutY="98.0" text="Click on any movie card for mor details" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="100.0">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

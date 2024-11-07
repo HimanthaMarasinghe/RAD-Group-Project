@@ -91,14 +91,15 @@ public class MovieDAOImpl implements MovieDAO {
     }
 
     @Override
-    public boolean updateMovie(Movie Movie) {
+    public boolean updateMovie(Movie Movie, String previousId) {
         try (Connection connection = Database.getConnection()) {
-            String sql = "UPDATE Movie SET MName = ?, duration = ?, price = ? WHERE MovieId = ?";
+            String sql = "UPDATE Movie SET MName = ?, duration = ?, price = ?, Mid = ? WHERE Mid = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, Movie.getmovieName());
             statement.setString(2, Movie.getDuration());
             statement.setInt(3, Movie.getPrice());
             statement.setString(4, Movie.getmovieId());
+            statement.setString(5, previousId);
             statement.executeUpdate();
             statement.close();
             connection.close();
