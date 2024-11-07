@@ -5,9 +5,9 @@ import com.radgroup.cinemahallticketmanagementsystem.models.Movie;
 import java.util.ArrayList;
 
 public interface MovieDAO {
-    public void add(Movie movie);
-    public void update(Movie movie);
-    public void delete(String movieId);
-    public Movie getMovie(String movieId);
-    public ArrayList<Movie> getAllMovies();
+    public boolean addMovie(Movie Movie);
+    public boolean deleteMovie(String movieId);
+    public Movie getMovie(String movieId);  //to edit it if we tend to edit it in seperate window
+    public boolean updateMovie(Movie Movie);
+    public ArrayList<Movie> listAllMovies();   //list all
 }
