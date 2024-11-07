@@ -101,10 +101,7 @@ public class Employees extends CoreController implements Cont{
     @FXML
     private void deleteUser(ActionEvent actionEvent) {
         User selectedUser = empTable.getSelectionModel().getSelectedItem();
-        if (selectedUser == null) {
-            System.out.println("No User Selected");
-        }
-        else {
+        if (selectedUser != null) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmation");
             alert.setContentText("Are you sure you want to delete "+ selectedUser.getUsername() +" from Database?");

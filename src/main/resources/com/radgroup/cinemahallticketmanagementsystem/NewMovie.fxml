@@ -23,7 +23,7 @@
                         <Font size="14.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="newMovieIdField" layoutX="257.0" layoutY="11.0" prefHeight="26.0" prefWidth="254.0" />
+                  <TextField fx:id="newMovieIdField" layoutX="257.0" layoutY="11.0" onKeyTyped="#handleTextInput" prefHeight="26.0" prefWidth="254.0" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="27.0" prefWidth="349.0">

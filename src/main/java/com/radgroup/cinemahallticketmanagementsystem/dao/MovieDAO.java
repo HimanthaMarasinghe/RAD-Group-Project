@@ -10,4 +10,5 @@ public interface MovieDAO {
     public Movie getMovie(String movieId);  //to edit it if we tend to edit it in seperate window
     public boolean updateMovie(Movie Movie, String previousId);
     public ArrayList<Movie> listAllMovies();   //list all
+    public ArrayList<String> getAllMovieIds();
 }

@@ -15,12 +15,11 @@ public class ShowTimeDAOImpl implements ShowTimeDAO {
     public boolean addShowTime(ShowTime showtime) {
         try {
             Connection connection = Database.getConnection();
-            String sql = "INSERT INTO showtime VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO showtime (date, timeslot, mid) VALUES (?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, showtime.getShowid());
-            statement.setDate(2, java.sql.Date.valueOf(showtime.getDate()));
-            statement.setString(3, showtime.getTimeslot());
-            statement.setString(4, showtime.getMovieid());
+            statement.setDate(1, java.sql.Date.valueOf(showtime.getDate()));
+            statement.setString(2, showtime.getTimeslot());
+            statement.setString(3, showtime.getMovieid());
             statement.executeUpdate();
             statement.close();
             connection.close();
@@ -31,12 +30,12 @@ public class ShowTimeDAOImpl implements ShowTimeDAO {
     }
 
     @Override
-    public boolean deleteShowTime(String showid) {
+    public boolean deleteShowTime(int showid) {
         try {
             Connection connection = Database.getConnection();
             String sql = "DELETE FROM showtime WHERE sid = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, showid);
+            statement.setInt(1, showid);
             statement.executeUpdate();
             statement.close();
             connection.close();
@@ -47,19 +46,20 @@ public class ShowTimeDAOImpl implements ShowTimeDAO {
     }
 
     @Override
-    public ShowTime getShowTime(String showid) {
+    public ShowTime getShowTime(int showid) {
         try {
             Connection connection = Database.getConnection();
             String sql = "SELECT * FROM showtime WHERE sid = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, showid);
+            statement.setInt(1, showid);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 ShowTime showtime = new ShowTime(
-                        resultSet.getString("sid"),
+                        resultSet.getInt("sid"),
                         resultSet.getDate("date").toLocalDate(),
                         resultSet.getString("timeslot"),
-                        resultSet.getString("mid"));
+                        resultSet.getString("mid"),
+                        resultSet.getInt("availableSeats"));
                 return showtime;
             }
         } catch (SQLException e) {
@@ -78,11 +78,11 @@ public class ShowTimeDAOImpl implements ShowTimeDAO {
 
             while (resultSet.next()) {
                 ShowTime showtime = new ShowTime(
-                        resultSet.getString("sid"),
+                        resultSet.getInt("sid"),
                         resultSet.getDate("date").toLocalDate(),
                         resultSet.getString("timeslot"),
-                        resultSet.getString("mid")
-                );
+                        resultSet.getString("mid"),
+                        resultSet.getInt("availableSeats"));
                 showtimes.add(showtime);
             }
         } catch (SQLException e) {
@@ -94,11 +94,12 @@ public class ShowTimeDAOImpl implements ShowTimeDAO {
     @Override
     public boolean updateShowTime(ShowTime showtime) {
         try (Connection connection = Database.getConnection()) {
-            String sql = "UPDATE showtime SET date = ?, timeslot = ? WHERE sid = ?";
+            String sql = "UPDATE showtime SET date = ?, timeslot = ?, mid = ? WHERE sid = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setDate(1, java.sql.Date.valueOf(showtime.getDate()));
             statement.setString(2, showtime.getTimeslot());
-            statement.setString(3, showtime.getShowid());
+            statement.setString(3, showtime.getMovieid());
+            statement.setInt(4, showtime.getShowid());
             statement.executeUpdate();
             statement.close();
             connection.close();

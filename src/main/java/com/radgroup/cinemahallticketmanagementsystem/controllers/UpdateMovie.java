@@ -7,10 +7,12 @@ import com.radgroup.cinemahallticketmanagementsystem.util.Utility;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -37,48 +39,66 @@ public class UpdateMovie extends dialogBox {
     private java.io.File file;
 
     @FXML
+    private void handleTextInput(KeyEvent event) {
+        String inputText = newMovieIdField.getText();
+        if (inputText.length() > 5) {
+            newMovieIdField.setText(inputText.substring(0, 5));
+        }
+    }
+
+
+    @FXML
     private void updateMovie(ActionEvent event) {
         String id = newMovieIdField.getText();
         String name = newMovieNameField.getText();
         String duration = newDurationField.getText();
-        int price = Integer.parseInt(newTicketPriceField.getText());
-        Movie updatedMovie = new Movie(id,name,duration,price);
+        String price = newTicketPriceField.getText();
 
-        boolean refreshRequired = false;
+        if(id.trim().isEmpty() || name.trim().isEmpty() || duration.trim().isEmpty() || price.trim().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("Input fields cannot be empty");
+            alert.showAndWait();
+        }else {
+            int priceInt = Integer.parseInt(price);
+            Movie updatedMovie = new Movie(id,name,duration,priceInt);
 
-        //Movie will be updated only if the user provide new details.
-        if(!updatedMovie.areAttributesEqual(currentMovie)){
-            MovieDAO MDAO = new MovieDAOImpl();
-            MDAO.updateMovie(updatedMovie, currentMovie.getmovieId());
+            boolean refreshRequired = false;
 
-            System.out.println("Movie updated");
+            //Movie will be updated only if the user provide new details.
+            if (!updatedMovie.areAttributesEqual(currentMovie)) {
+                MovieDAO MDAO = new MovieDAOImpl();
+                MDAO.updateMovie(updatedMovie, currentMovie.getmovieId());
 
-            refreshRequired = true;
+                System.out.println("Movie updated");
+
+                refreshRequired = true;
+            }
+
+            //Update Image
+            if (file != null) {
+                Utility.deleteImage(currentMovie.getmovieId(), "moviePosters");
+                Utility.SaveImage(updatedMovie.getmovieId(), file, "moviePosters");
+
+                System.out.println("Movie image updated");
+
+                refreshRequired = true;
+            }
+
+            if (refreshRequired) {
+                Object[] objectsToPass = {updatedMovie, moviesController};
+
+                //Refresh Movie Details DialogBox
+                movieDetailsController.setDialogBox(objectsToPass);
+
+                //Refresh Movies Tab
+                moviesController.movieListRefresh();
+            }
+
+
+            dialog.setResult(ButtonType.OK);
+            dialog.close();
         }
-
-        //Update Image
-        if(file != null){
-            Utility.deleteImage(currentMovie.getmovieId(), "moviePosters");
-            Utility.SaveImage(updatedMovie.getmovieId(), file, "moviePosters");
-
-            System.out.println("Movie image updated");
-
-            refreshRequired = true;
-        }
-
-        if(refreshRequired){
-            Object[] objectsToPass = {updatedMovie, moviesController};
-
-            //Refresh Movie Details DialogBox
-            movieDetailsController.setDialogBox(objectsToPass);
-
-            //Refresh Movies Tab
-            moviesController.movieListRefresh();
-        }
-
-
-        dialog.setResult(ButtonType.OK);
-        dialog.close();
     }
 
     @FXML
