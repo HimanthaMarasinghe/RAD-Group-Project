@@ -76,9 +76,6 @@ public class UserDAOImpl implements UserDAO {
         }
     }
 
-
-
-
     @Override
     public boolean updateUserPassword(User user) {
         // This method is used to update ONLY THE PASSWORD.
