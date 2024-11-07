@@ -1,14 +1,11 @@
 package com.radgroup.cinemahallticketmanagementsystem.controllers;
 
 import com.radgroup.cinemahallticketmanagementsystem.models.Movie;
+import com.radgroup.cinemahallticketmanagementsystem.util.Utility;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-
-import java.net.URL;
-import java.util.Objects;
 
 public class MovieCard extends CoreController{
 
@@ -19,23 +16,21 @@ public class MovieCard extends CoreController{
     private ImageView movieCardImage;
 
     private Movie movie;
+    private Movies movieController;
 
     public void setData(Object data){
-        movie = (Movie) data;
+        Object[] objectArray = (Object[]) data; // Cast 'data' to an array of objects
+        movie = (Movie) objectArray[0];    // Cast the first element to a 'Movie' object
+        movieController = (Movies) objectArray[1];
         movieNameLabel.setText(movie.getmovieName());
-        URL imageURL = getClass().getResource("/com/radgroup/cinemahallticketmanagementsystem/MovieImages/"+movie.getmovieId()+".jpg");
-        if(imageURL == null) {
-            imageURL = getClass().getResource("/com/radgroup/cinemahallticketmanagementsystem/MovieImages/DefaultMoviePoster.png");
-        }
-        if(imageURL != null){
-            movieCardImage.setImage(new Image(imageURL.toExternalForm()));
-        }
+        movieCardImage.setImage(Utility.loadImage(movie.getmovieId(), "moviePosters"));
     }
 
 
     @FXML
     private void showMovieDetails(MouseEvent event) {
         System.out.println(movie.getmovieName());
-        showDialogBox("MovieDetails", movie.getmovieName(), movie);
+        Object[] objectArray = {movie, movieController};
+        showDialogBox("MovieDetails", movie.getmovieName(), objectArray);
     }
 }

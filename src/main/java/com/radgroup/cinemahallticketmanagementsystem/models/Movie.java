@@ -1,6 +1,7 @@
 package com.radgroup.cinemahallticketmanagementsystem.models;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Movie {
 
@@ -49,5 +50,15 @@ public class Movie {
     public void setPrice(int price) {
         this.price = price;
     }
+
+    public boolean areAttributesEqual(Movie other) {
+        if (other == null) return false;
+
+        return Objects.equals(this.movieId, other.movieId) &&
+                Objects.equals(this.movieName, other.movieName) &&
+                Objects.equals(this.duration, other.duration) &&
+                this.price == other.price;
+    }
+
 }
 

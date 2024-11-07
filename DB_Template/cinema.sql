@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 07, 2024 at 10:52 AM
+-- Generation Time: Nov 07, 2024 at 03:57 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -43,23 +43,14 @@ INSERT INTO `movie` (`Mid`, `MName`, `Duration`, `price`) VALUES
 ('AM1', 'Ant-Man', '1 hour 57 ', 700),
 ('AM2', 'Ant-Man and The Wasp', '1 hour 58 ', 700),
 ('AV1', 'The Avengers', '2 hours 23', 800),
-('AV2', 'Avengers: Age of Ult', '2 hours 21', 800),
-('AV3', 'Avengers: Infinity W', '2 hours 29', 850),
 ('BP', 'Black Panther', '2 hours 14', 750),
-('CA1', 'Captain America: The', '2 hours 4 ', 700),
-('CA2', 'Captain America: The', '2 hours 16', 750),
-('CA3', 'Captain America: Civ', '2 hours 27', 800),
 ('DRS', 'Doctor Strange', '1 hour 55 ', 750),
-('GOG1', 'Guardians of the Gal', '2 hours 1 ', 750),
-('GOG2', 'Guardians of the Gal', '2 hours 16', 750),
 ('HUL', 'The Incredible Hulk', '1 hour 52 ', 650),
 ('IM1', 'Iron Man', '2 hours 6 ', 700),
 ('IM2', 'Iron Man 2', '2 hours 4 ', 700),
 ('IM3', 'Iron Man 3', '2 hours 10', 750),
-('SMH', 'Spider-Man: Homecomi', '2 hours 13', 750),
 ('TH1', 'Thor', '1 hour 55 ', 650),
-('TH2', 'Thor: The Dark World', '1 hour 52 ', 650),
-('TH3', 'Thor: Ragnarok', '2 hours 10', 750);
+('TH2', 'Thor: The Dark World', '1 hour 52 ', 650);
 
 -- --------------------------------------------------------
 
