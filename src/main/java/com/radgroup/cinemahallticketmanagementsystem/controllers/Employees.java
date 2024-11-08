@@ -39,16 +39,6 @@ public class Employees extends CoreController implements Cont{
     public void initialize() {
         System.out.println("Customers Initializes");
 
-        //ToDo : This code block is hard coded to create initial data. Should be removed after CustomerDOBImpl class is created
-//        testUsersList.clear();
-//        testUsersList.add(new User("TestUser", "PPP", "Emp", "0987654321"));
-//        testUsersList.add(new User("TestUser", "PPP", "Emp", "0987654321"));
-//        testUsersList.add(new User("TestUser", "PPP", "Emp", "0987654321"));
-//        testUsersList.add(new User("TestUser", "PPP", "Emp", "0987654321"));
-//        testUsersList.add(new User("TestUser", "PPP", "Emp", "0987654321"));
-
-
-
         empUsernameCol.setCellValueFactory(new PropertyValueFactory<User, String>("username"));
         empNameCol.setCellValueFactory(new PropertyValueFactory<User, String>("name"));
         empAddCol.setCellValueFactory(new PropertyValueFactory<User, String>("address"));
@@ -56,7 +46,6 @@ public class Employees extends CoreController implements Cont{
 
 
         empList = FXCollections.observableArrayList();
-//        empList.addAll();
 
         empTable.setItems(empList);
     }
@@ -110,8 +99,8 @@ public class Employees extends CoreController implements Cont{
             alert.setContentText("Are you sure you want to delete "+ selectedUser.getUsername() +" from Database?");
             Optional<ButtonType> result = alert.showAndWait();
             if(result.get() == ButtonType.OK){
-                testUsersList.remove(selectedUser);
-
+                UserDAO UDAO = new UserDAOImpl();
+                UDAO.deleteUser(selectedUser.getUsername());
                 Alert deleteAlert = new Alert(Alert.AlertType.INFORMATION);
                 deleteAlert.setTitle("Delete");
                 deleteAlert.setContentText(selectedUser.getUsername() + " has been deleted successfully");
