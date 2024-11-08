@@ -38,7 +38,7 @@ public class NewCustomer extends dialogBox{
             alert.showAndWait();
         }else {
             CustomerDAO CDAO = new CustomerDAOImpl();
-            CDAO.addCustomer(new Customer(0, name, phone, dob));
+            CDAO.addCustomer(new Customer(name, phone, dob));
 
             dialog.setResult(ButtonType.OK);
             dialog.close();

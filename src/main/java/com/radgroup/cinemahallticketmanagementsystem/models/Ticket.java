@@ -3,14 +3,18 @@ package com.radgroup.cinemahallticketmanagementsystem.models;
 public class Ticket {
     private int ticketId;
     private int showTimeId;
-    private int customerId;
+    private String customerPhone;
     private String empUsername;
     private String seatNo;
 
-    public Ticket(int ticketIdIn, int showTimeIdIn, int customerIdIn, String empUsernameIn, String seatNoIn){
+    public Ticket(int ticketIdIn, int showTimeIdIn, String customerPhoneIn, String empUsernameIn, String seatNoIn){
+        this(showTimeIdIn, customerPhoneIn, empUsernameIn, seatNoIn);
         this.ticketId = ticketIdIn;
+    }
+
+    public Ticket(int showTimeIdIn, String customerPhoneIn, String empUsernameIn, String seatNoIn){
         this.showTimeId = showTimeIdIn;
-        this.customerId = customerIdIn;
+        this.customerPhone = customerPhoneIn;
         this.empUsername = empUsernameIn;
         this.seatNo = seatNoIn;
     }
@@ -27,12 +31,12 @@ public class Ticket {
         this.showTimeId = newShowTimeId;
     }
 
-    public int getCustomerId(){
-        return customerId;
+    public String getCustomerPhone(){
+        return customerPhone;
     }
 
-    public void setCustomerId(int newCustomerId){
-        this.customerId = newCustomerId;
+    public void setCustomerPhone(String newCustomerPhone){
+        this.customerPhone = newCustomerPhone;
     }
 
     public String getEmpUsername(){

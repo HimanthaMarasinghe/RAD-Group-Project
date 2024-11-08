@@ -99,7 +99,7 @@ public class Customers extends CoreController implements Cont{
 //                testCusList.remove(cusSelected);
 
                 CustomerDAO CDAO = new CustomerDAOImpl();
-                CDAO.deleteCustomer(cusSelected.getCustomerId());
+                CDAO.deleteCustomer(cusSelected.getPhone());
 
                 Alert deleteAlert = new Alert(Alert.AlertType.INFORMATION);
                 deleteAlert.setTitle("Delete");

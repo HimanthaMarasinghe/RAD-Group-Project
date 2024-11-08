@@ -138,57 +138,6 @@ public class UpdateMovie extends dialogBox {
 
             dialog.setResult(ButtonType.OK);
             dialog.close();
-//
-//
-//
-//            //Movie will be updated only if the user provide new details.
-//            if (!updatedMovie.areAttributesEqual(currentMovie)) {
-//                if (movieIdExist) {
-//                    midErrorOccurred = true;
-//                    Alert alert = new Alert(Alert.AlertType.ERROR);
-//                    alert.setTitle("Error");
-//                    alert.setContentText("Movie ID already exist");
-//                    alert.showAndWait();
-//                } else {
-//                    MovieDAO MDAO = new MovieDAOImpl();
-//                    MDAO.updateMovie(updatedMovie, currentMovie.getmovieId());
-//
-//                    System.out.println("Movie updated");
-//
-//                    refreshRequired = true;
-//                }
-//            }
-//
-//            //Update Image
-//            if (file != null && !midErrorOccurred) {
-//                Utility.deleteImage(currentMovie.getmovieId(), "moviePosters");
-//                Utility.SaveImage(updatedMovie.getmovieId(), file, "moviePosters");
-//
-//                System.out.println("Movie image updated");
-//
-//                refreshRequired = true;
-//            }
-//
-//            if (refreshRequired) {
-//                Object[] objectsToPass = {updatedMovie, moviesController};
-//
-//                //Refresh Movie Details DialogBox
-//                movieDetailsController.setDialogBox(objectsToPass);
-//
-//                //Refresh Movies Tab
-//                moviesController.movieListRefresh();
-//            }
-//            else{
-//                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//                alert.setTitle("No new Data");
-//                alert.setContentText("Movie details were not updated because no new data was provided.");
-//                alert.show();
-//            }
-//
-//            if(!midErrorOccurred) {
-//                dialog.setResult(ButtonType.OK);
-//                dialog.close();
-//            }
         }
     }
 

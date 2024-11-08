@@ -12,4 +12,6 @@ public interface ShowTimeDAO {
     public boolean updateShowTime(ShowTime showtime);
     public ArrayList<ShowTime> listAllShowTimesForMovie(String movieId);   //list all
     public int getNumberOfShowTimes(LocalDate fromDate, LocalDate toDate, String timeSlot);
+    public ArrayList<String> getAllShowTimes(String movieId, LocalDate date);
+    public int getShowId(ShowTime showTime);
 }

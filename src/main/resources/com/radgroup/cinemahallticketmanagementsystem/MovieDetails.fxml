@@ -96,6 +96,7 @@
                      <contextMenu>
                         <ContextMenu>
                           <items>
+                            <MenuItem mnemonicParsing="false" onAction="#seeTicekts" text="See Tickets" />
                             <MenuItem mnemonicParsing="false" onAction="#updateST" text="Update" />
                               <MenuItem mnemonicParsing="false" onAction="#deleteST" text="Delete" />
                           </items>
