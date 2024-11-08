@@ -26,14 +26,14 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    public void updateCustomer(Customer customer) {
+    public void updateCustomer(String currentCustomerPhone, Customer customer) {
         try (Connection connection = Database.getConnection()) {
-            String sql = "UPDATE customer SET name = ?, phone = ?, dateOfBirth = ? WHERE customerId = ?";
+            String sql = "UPDATE customer SET name = ?, phone = ?, dateOfBirth = ? WHERE phone = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, customer.getName());
             statement.setString(2, customer.getPhone());
             statement.setDate(3, java.sql.Date.valueOf(customer.getDateOfBirth())); // Convert LocalDate to java.sql.Date
-            statement.setInt(4, customer.getCustomerId());
+            statement.setString(4, currentCustomerPhone);
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -41,11 +41,11 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    public void deleteCustomer(int customerId) {
+    public void deleteCustomer(String customerPhone) {
         try (Connection connection = Database.getConnection()) {
-            String sql = "DELETE FROM customer WHERE customerId = ?";
+            String sql = "DELETE FROM customer WHERE phone = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, customerId);
+            statement.setString(1, customerPhone);
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -53,16 +53,15 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    public Customer getCustomer(String customerId) {
+    public Customer getCustomer(String customerPhone) {
         try (Connection connection = Database.getConnection()) {
-            String sql = "SELECT * FROM customer WHERE customerId = ?";
+            String sql = "SELECT * FROM customer WHERE phone = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, customerId);
+            statement.setString(1, customerPhone);
             ResultSet resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
                 return new Customer(
-                        resultSet.getInt("customerId"),
                         resultSet.getString("name"),
                         resultSet.getString("phone"),
                         resultSet.getDate("dateOfBirth").toLocalDate() // Convert java.sql.Date to LocalDate
@@ -84,7 +83,6 @@ public class CustomerDAOImpl implements CustomerDAO {
 
             while (resultSet.next()) {
                 Customer customer = new Customer(
-                        resultSet.getInt("customerId"),
                         resultSet.getString("name"),
                         resultSet.getString("phone"),
                         resultSet.getDate("dateOfBirth").toLocalDate() // Convert java.sql.Date to LocalDate

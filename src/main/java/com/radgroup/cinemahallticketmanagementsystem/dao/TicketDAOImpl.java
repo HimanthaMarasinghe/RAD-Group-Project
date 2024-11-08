@@ -23,7 +23,7 @@ public class TicketDAOImpl implements TicketDAO{
                 tickets.add(new Ticket(
                         rs.getInt("ticketID"),
                         rs.getInt("showTimeId"),
-                        rs.getInt("customerID"),
+                        rs.getString("customerPhone"),
                         rs.getString("empUserName"),
                         rs.getString("seatNo")
                 ));
@@ -49,7 +49,7 @@ public class TicketDAOImpl implements TicketDAO{
                 Ticket ticket = new Ticket(
                         rs.getInt("ticketID"),
                         rs.getInt("showTimeId"),
-                        rs.getInt("customerID"),
+                        rs.getString("customerPhone"),
                         rs.getString("empUserName"),
                         rs.getString("seatNo")
                     );
@@ -68,13 +68,12 @@ public class TicketDAOImpl implements TicketDAO{
     public boolean addTicket(Ticket ticket) {
         try {
             Connection con = Database.getConnection();
-            String query = "INSER INTO tickets (showTimeId, customerID, empUserName, seatNo) VALUES (?,?,?,?)";
+            String query = "INSERT INTO tickets (showTimeId, customerPhone, empUserName, seatNo) VALUES (?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(query);
             ps.setInt(1, ticket.getShowTimeId());
-            ps.setInt(2, ticket.getCustomerId());
-            ps.setInt(3, ticket.getCustomerId());
-            ps.setString(4, ticket.getEmpUsername());
-            ps.setString(5, ticket.getSeatNo());
+            ps.setString(2, ticket.getCustomerPhone());
+            ps.setString(3, ticket.getEmpUsername());
+            ps.setString(4, ticket.getSeatNo());
             ps.executeUpdate();
             ps.close();
             con.close();
@@ -88,10 +87,10 @@ public class TicketDAOImpl implements TicketDAO{
     public boolean updateTicket(Ticket ticket) {
         try{
             Connection con = Database.getConnection();
-            String query = "UPDATE tickets SET showTimeId = ?, customerID = ?, empUserName = ?, seatNo = ? WHERE ticketID = ?";
+            String query = "UPDATE tickets SET showTimeId = ?, customerPhone = ?, empUserName = ?, seatNo = ? WHERE ticketID = ?";
             PreparedStatement ps = con.prepareStatement(query);
             ps.setInt(1, ticket.getShowTimeId());
-            ps.setInt(2, ticket.getCustomerId());
+            ps.setString(2, ticket.getCustomerPhone());
             ps.setString(3, ticket.getEmpUsername());
             ps.setString(4, ticket.getSeatNo());
             ps.setInt(5, ticket.getTicketId());

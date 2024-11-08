@@ -112,6 +112,46 @@ public class ShowTimeDAOImpl implements ShowTimeDAO {
     }
 
     @Override
+    public ArrayList<String> getAllShowTimes(String movieId, LocalDate date) {
+        try (Connection connection = Database.getConnection()) {
+            String query = "SELECT timeslot FROM showtime WHERE mid = ? AND date = ?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, movieId);
+            statement.setDate(2, java.sql.Date.valueOf(date));
+            ResultSet resultSet = statement.executeQuery();
+            ArrayList<String> showtimes = new ArrayList<>();
+            while (resultSet.next()) {
+                showtimes.add(resultSet.getString("timeslot"));
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+            return showtimes;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public int getShowId(ShowTime showTime) {
+        try {
+            Connection connection = Database.getConnection();
+            String sql = "SELECT sid FROM showtime WHERE date = ? AND timeslot = ? AND mid = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setDate(1, java.sql.Date.valueOf(showTime.getDate()));
+            ps.setString(2, showTime.getTimeslot());
+            ps.setString(3, showTime.getMovieid());
+            ResultSet resultSet = ps.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt("sid");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return 0;
+    }
+
+    @Override
     public boolean updateShowTime(ShowTime showtime) {
         try (Connection connection = Database.getConnection()) {
             String sql = "UPDATE showtime SET date = ?, timeslot = ?, mid = ? WHERE sid = ?";

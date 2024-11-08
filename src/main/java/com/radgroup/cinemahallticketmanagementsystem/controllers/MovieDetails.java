@@ -189,4 +189,18 @@ public class MovieDetails extends dialogBox {
         }
         refresh();
     }
+
+    @FXML
+    private void seeTicekts(ActionEvent actionEvent) {
+        ShowTime selectedST = showTimeTable.getSelectionModel().getSelectedItem();
+
+        if (selectedST == null) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No Selection");
+            alert.setContentText("Please select a Show Time first");
+            alert.showAndWait();
+        }else
+            showDialogBox("ShowTimeDetails", "Showtime Details", selectedST);
+    }
 }

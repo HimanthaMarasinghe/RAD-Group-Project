@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 public interface CustomerDAO {
     public void addCustomer(Customer customer);
-    public void updateCustomer(Customer customer);
-    public void deleteCustomer(int customerId);
-    public Customer getCustomer(String customerId);
+    public void updateCustomer(String currentCustomerPhone, Customer customer);
+    public void deleteCustomer(String customerPhone);
+    public Customer getCustomer(String customerPhone);
     public ArrayList<Customer> getAllCustomers();
 }

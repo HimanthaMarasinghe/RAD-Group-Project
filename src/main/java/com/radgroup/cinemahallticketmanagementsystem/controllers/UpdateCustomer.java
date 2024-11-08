@@ -25,7 +25,7 @@ public class UpdateCustomer extends dialogBox{
     @FXML
     private DatePicker updCusDoB;
 
-    private int currentCustomerID;
+    private String currentCustomerPhone;
 
     @FXML
     void updateCustomer(ActionEvent event) {
@@ -40,7 +40,7 @@ public class UpdateCustomer extends dialogBox{
             alert.showAndWait();
         }else{
             CustomerDAO CDAO = new CustomerDAOImpl();
-            CDAO.updateCustomer(new Customer(currentCustomerID, name, phone, dob));
+            CDAO.updateCustomer(currentCustomerPhone ,new Customer( name, phone, dob));
 
             dialog.setResult(ButtonType.OK);
             dialog.close();
@@ -51,7 +51,7 @@ public class UpdateCustomer extends dialogBox{
     @Override
     public void setDialogBox(Object dataObject){
         Customer curentCustomer = (Customer) dataObject;
-        currentCustomerID = curentCustomer.getCustomerId();
+        currentCustomerPhone = curentCustomer.getPhone();
         updCusName.setText(curentCustomer.getName());
         updCusPhone.setText(curentCustomer.getPhone());
         updCusDoB.setValue(curentCustomer.getDateOfBirth());

@@ -5,26 +5,27 @@ import java.time.LocalDate;
 import java.util.Date;
 
 public class Customer {
-    private int customerId;
+//    private int customerId;
     private String name;
     private String phone;
     private LocalDate dateOfBirth;
 
-    public Customer(int customerId, String name, String phone, LocalDate dateOfBirth) {
-        this.customerId = customerId;
+//    public Customer(int customerId, String name, String phone, LocalDate dateOfBirth) {
+    public Customer(String name, String phone, LocalDate dateOfBirth) {
+//        this.customerId = customerId;
         this.name = name;
         this.phone = phone;
         this.dateOfBirth = dateOfBirth;
     }
 
     // Getters and Setters
-    public int getCustomerId() {
-        return customerId;
-    }
+//    public int getCustomerId() {
+//        return customerId;
+//    }
 
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
-    }
+//    public void setCustomerId(int customerId) {
+//        this.customerId = customerId;
+//    }
 
     public String getName() {
         return name;
