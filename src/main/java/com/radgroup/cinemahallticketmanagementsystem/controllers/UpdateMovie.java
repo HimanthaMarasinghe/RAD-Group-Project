@@ -37,12 +37,39 @@ public class UpdateMovie extends dialogBox {
     private Movies moviesController;
     private MovieDetails movieDetailsController;
     private java.io.File file;
+    private boolean movieIdExist;
+
+    private String previousPriceInput;
+
+    /**
+     * Making sure price field only accept integer values.
+     * @param event
+     */
+    @FXML
+    private void filterPriceInput(KeyEvent event) {
+        if(newTicketPriceField.getText().matches("\\d*")) {
+            previousPriceInput = newTicketPriceField.getText();
+        }else
+            newTicketPriceField.setText(previousPriceInput);
+    }
 
     @FXML
     private void handleTextInput(KeyEvent event) {
         String inputText = newMovieIdField.getText();
         if (inputText.length() > 5) {
             newMovieIdField.setText(inputText.substring(0, 5));
+        }
+
+        MovieDAO MDAO = new MovieDAOImpl();
+        Movie movieWithSameID = MDAO.getMovie(inputText);
+        movieIdExist = movieWithSameID != null && !movieWithSameID.areAttributesEqual(currentMovie);
+    }
+
+    @FXML
+    private void trimDuration(KeyEvent event) {
+        String inputText = newDurationField.getText();
+        if (inputText.length() > 10) {
+            newDurationField.setText(inputText.substring(0, 10));
         }
     }
 
@@ -65,14 +92,23 @@ public class UpdateMovie extends dialogBox {
 
             boolean refreshRequired = false;
 
+
             //Movie will be updated only if the user provide new details.
             if (!updatedMovie.areAttributesEqual(currentMovie)) {
-                MovieDAO MDAO = new MovieDAOImpl();
-                MDAO.updateMovie(updatedMovie, currentMovie.getmovieId());
+                if (movieIdExist) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setContentText("Movie ID already exist");
+                    alert.show();
+                    return;
+                } else {
+                    MovieDAO MDAO = new MovieDAOImpl();
+                    MDAO.updateMovie(updatedMovie, currentMovie.getmovieId());
 
-                System.out.println("Movie updated");
+                    System.out.println("Movie updated");
 
-                refreshRequired = true;
+                    refreshRequired = true;
+                }
             }
 
             //Update Image
@@ -93,11 +129,66 @@ public class UpdateMovie extends dialogBox {
 
                 //Refresh Movies Tab
                 moviesController.movieListRefresh();
+            }else{
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("No new Data");
+                alert.setContentText("Movie details were not updated because no new data was provided.");
+                alert.show();
             }
-
 
             dialog.setResult(ButtonType.OK);
             dialog.close();
+//
+//
+//
+//            //Movie will be updated only if the user provide new details.
+//            if (!updatedMovie.areAttributesEqual(currentMovie)) {
+//                if (movieIdExist) {
+//                    midErrorOccurred = true;
+//                    Alert alert = new Alert(Alert.AlertType.ERROR);
+//                    alert.setTitle("Error");
+//                    alert.setContentText("Movie ID already exist");
+//                    alert.showAndWait();
+//                } else {
+//                    MovieDAO MDAO = new MovieDAOImpl();
+//                    MDAO.updateMovie(updatedMovie, currentMovie.getmovieId());
+//
+//                    System.out.println("Movie updated");
+//
+//                    refreshRequired = true;
+//                }
+//            }
+//
+//            //Update Image
+//            if (file != null && !midErrorOccurred) {
+//                Utility.deleteImage(currentMovie.getmovieId(), "moviePosters");
+//                Utility.SaveImage(updatedMovie.getmovieId(), file, "moviePosters");
+//
+//                System.out.println("Movie image updated");
+//
+//                refreshRequired = true;
+//            }
+//
+//            if (refreshRequired) {
+//                Object[] objectsToPass = {updatedMovie, moviesController};
+//
+//                //Refresh Movie Details DialogBox
+//                movieDetailsController.setDialogBox(objectsToPass);
+//
+//                //Refresh Movies Tab
+//                moviesController.movieListRefresh();
+//            }
+//            else{
+//                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//                alert.setTitle("No new Data");
+//                alert.setContentText("Movie details were not updated because no new data was provided.");
+//                alert.show();
+//            }
+//
+//            if(!midErrorOccurred) {
+//                dialog.setResult(ButtonType.OK);
+//                dialog.close();
+//            }
         }
     }
 
@@ -124,6 +215,8 @@ public class UpdateMovie extends dialogBox {
         newMovieNameField.setText(currentMovie.getmovieName());
         newDurationField.setText(currentMovie.getDuration());
         newTicketPriceField.setText(String.valueOf(currentMovie.getPrice()));
+
+        previousPriceInput = String.valueOf(currentMovie.getPrice());
 
         movieCardImage.setImage(Utility.loadImage(currentMovie.getmovieId(), "moviePosters"));
     }

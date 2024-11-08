@@ -43,7 +43,7 @@
                         <Font size="14.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="newDurationField" prefHeight="26.0" prefWidth="254.0" />
+                  <TextField fx:id="newDurationField" onKeyTyped="#trimDuration" prefHeight="26.0" prefWidth="254.0" promptText="Format Ex : 1h 30m" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="27.0" prefWidth="349.0">
@@ -53,7 +53,7 @@
                         <Font size="14.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="newTicketPriceField" prefHeight="26.0" prefWidth="254.0" />
+                  <TextField fx:id="newTicketPriceField" onKeyTyped="#filterPriceInput" prefHeight="26.0" prefWidth="254.0" />
                </children>
             </HBox>
             <Button mnemonicParsing="false" onAction="#updateMovie" prefWidth="180.0" text="Update" />
