@@ -126,16 +126,45 @@ public class MovieDetails extends dialogBox {
     @FXML
     private void updateST(ActionEvent actionEvent) {
         ShowTime selectedST = showTimeTable.getSelectionModel().getSelectedItem();
+
         if (selectedST != null) {
-            showDialogBox("UpdateShowTime", "Update Show Time", selectedST);
-            refresh();
+            boolean confirmed = true;
+            if(selectedST.getSeats() < 200) {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Warning");
+                alert.setContentText("Tickets have already been booked for this show time. If you proceed with updating it, please ensure that you inform all ticket holders about the changes.");
+                alert.getDialogPane().setMinWidth(400);  // Adjust the width as needed
+                alert.getDialogPane().setMinHeight(200);
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.get() == ButtonType.CANCEL)
+                    confirmed = false;
+            }
+            if(confirmed) {
+                showDialogBox("UpdateShowTime", "Update Show Time", selectedST);
+                refresh();
+            }
         }
     }
 
     @FXML
     private void deleteST(ActionEvent actionEvent) {
         ShowTime selectedST = showTimeTable.getSelectionModel().getSelectedItem();
-        if (selectedST != null) {
+
+        if (selectedST == null) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No Selection");
+            alert.setContentText("Please select a Show Time first");
+            alert.showAndWait();
+        }
+        else if (selectedST.getSeats() < 200) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("There are tickets booked for this Show Time. Update those tickets into different show times or Delete them, before trying to delete this show time. \n \n" +
+                    "Hint : Right-click on the show time and select \"View Tickets\" option to see, update or delete tickets");
+            alert.showAndWait();
+        }
+        else {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmation");
             alert.setContentText("Are you sure you want to delete "+ selectedST.getDate() + ", " + selectedST.getTimeslot() + " showTime?");

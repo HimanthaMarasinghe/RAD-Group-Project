@@ -41,22 +41,22 @@ public class NewShowTime extends dialogBox{
         LocalDate DateTo = toDate.getValue();
         ShowTimeDAO SDAO = new ShowTimeDAOImpl();
 
-        boolean errorOcured = false;
+        int noOfOverlapingSTs = SDAO.getNumberOfShowTimes(DateFrom, DateTo, TimeSlot);
 
-        for (long days = ChronoUnit.DAYS.between(DateFrom, DateTo); days >= 0; days--) {
-            LocalDate currentDate = DateFrom.plusDays(days);
-            boolean success = SDAO.addShowTime(new ShowTime(currentDate, TimeSlot, movieID));
-            if (!success) {
-                errorOcured = true;
+        if(noOfOverlapingSTs == 0) {
+            for (long days = ChronoUnit.DAYS.between(DateFrom, DateTo); days >= 0; days--) {
+                LocalDate currentDate = DateFrom.plusDays(days);
+                SDAO.addShowTime(new ShowTime(currentDate, TimeSlot, movieID));
             }
+            dialog.setResult(ButtonType.OK);
+            dialog.close();
+        }else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning");
+            alert.setHeaderText("Overlapping Show Times");
+            alert.setContentText(noOfOverlapingSTs + " show times you're trying to add overlap with existing entries in the database for the selected dates and time slots. Please review current show times from Upcoming table in the Home tab, and ensure that new show times do not overlap with them before adding.");
+            alert.showAndWait();
         }
-        if (errorOcured) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setContentText("Some show times did not get added to the database. Showtime with same date and time being present in the database may cause the error.");
-        }
-        dialog.setResult(ButtonType.OK);
-        dialog.close();
     }
 
     @Override

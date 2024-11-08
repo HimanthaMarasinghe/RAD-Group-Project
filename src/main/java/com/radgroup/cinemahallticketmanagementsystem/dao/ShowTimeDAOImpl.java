@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ShowTimeDAOImpl implements ShowTimeDAO {
@@ -89,6 +90,25 @@ public class ShowTimeDAOImpl implements ShowTimeDAO {
             throw new RuntimeException(e);
         }
         return showtimes;
+    }
+
+    @Override
+    public int getNumberOfShowTimes(LocalDate fromDate, LocalDate toDate, String timeSlot) {
+        try {
+            Connection connection = Database.getConnection();
+            String sql = "SELECT COUNT(*) FROM showtime WHERE timeslot = ? AND date BETWEEN ? AND ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, timeSlot);
+            statement.setDate(2, java.sql.Date.valueOf(fromDate));
+            statement.setDate(3, java.sql.Date.valueOf(toDate));
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt(1);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return 0;
     }
 
     @Override

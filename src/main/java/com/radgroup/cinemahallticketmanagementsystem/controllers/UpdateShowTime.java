@@ -9,10 +9,7 @@ import com.radgroup.cinemahallticketmanagementsystem.models.ShowTime;
 import com.radgroup.cinemahallticketmanagementsystem.util.Utility;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 
 import java.time.LocalDate;
@@ -52,13 +49,26 @@ public class UpdateShowTime extends dialogBox {
         String Id = movieID.getSelectionModel().getSelectedItem();
         String TimeSlot = timeSlot.getSelectionModel().getSelectedItem();
         LocalDate Date = date.getValue();
+
+
+
         ShowTime newST = new ShowTime(showTime.getShowid(), Date,TimeSlot, Id);
         if(!showTime.areAttributesEqual(newST)) {
             ShowTimeDAO SDAO = new ShowTimeDAOImpl();
-            SDAO.updateShowTime(newST);
+            int noOfOverlapingSTs = SDAO.getNumberOfShowTimes(Date, Date, TimeSlot);
+            if (noOfOverlapingSTs == 0) {
+                SDAO.updateShowTime(newST);
+                dialog.setResult(ButtonType.OK);
+                dialog.close();
+            }
+            else {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning");
+                alert.setHeaderText("Overlapping Show Times");
+                alert.setContentText("The show time you're trying to add overlap with existing entries in the database for the selected date and time slot. Please review current show times from Upcoming table in the Home tab, and ensure that new show time do not overlap with them before adding.");
+                alert.showAndWait();
+            }
         }
-        dialog.setResult(ButtonType.OK);
-        dialog.close();
     }
 
     public void setDialogBox(Object object) {
