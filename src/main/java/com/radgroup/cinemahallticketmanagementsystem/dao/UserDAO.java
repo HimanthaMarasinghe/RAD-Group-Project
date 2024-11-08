@@ -12,5 +12,6 @@ public interface UserDAO {
 
     public boolean updateUserPassword(User user);
     public boolean deleteUser(String username);
-    public ArrayList<User> getAllUsers();
+    public ArrayList<User> listAllEmployees();
 }
+
