@@ -60,9 +60,9 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public void updateUserDetails(String currentUsername, User user) {
         try{
-            Connection con = Database.getConnection();
+            Connection conn = Database.getConnection();
             String query = "UPDATE users SET username = ?, name = ?, address = ?, phone = ? WHERE username = ?";
-            PreparedStatement ps = con.prepareStatement(query);
+            PreparedStatement ps = conn.prepareStatement(query);
             ps.setString(1, user.getUsername());
             ps.setString(2, user.getName());
             ps.setString(3, user.getAddress());
@@ -70,7 +70,7 @@ public class UserDAOImpl implements UserDAO {
             ps.setString(5, currentUsername);
             ps.executeUpdate();
             ps.close();
-            con.close();
+            conn.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -78,24 +78,57 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public boolean updateUserPassword(User user) {
-        // This method is used to update ONLY THE PASSWORD.
-        // username should be used in WHERE clause to filter data.
-        //Ex : "UPDATE users SET password = ? WHERE username = ?"
-
-        // Other fields (username, name, phone, address, role) in the database should not be changed
-        // The user object that is passed to this method only have the new password and the username.
-        // Therefore, user.getName(), user.getPhone(), user.getAddress(), user.getRole() method are NOT ALLOWED HERE.
-        // ONLY user.getUsername() nad user.getPassword() method can be used.
+        try{
+            Connection conn = Database.getConnection();
+            String query = "UPDATE users SET password = ? WHERE username = ?";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, user.getUsername());
+            stmt.setString(2, user.getPassword());
+            stmt.executeUpdate();
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         return false;
     }
 
     @Override
     public boolean deleteUser(String username) {
+        try{
+            Connection conn = Database.getConnection();
+            String query = "DELETE FROM users WHERE usename = ?";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, username);
+            stmt.executeUpdate();
+            stmt.close();
+            conn.close();
+        } catch (SQLException e){
+            throw new RuntimeException(e);
+        }
         return false;
     }
 
     @Override
-    public ArrayList<User> getAllUsers() {
+    public ArrayList<User> listAllEmployees() {
+        ArrayList<User> users = new ArrayList<>();
+        try{
+            Connection conn = Database.getConnection();
+            String query = "SELECT * FROM users WHERE role = Employee";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            ResultSet resultSet = stmt.executeQuery();
+
+            while (resultSet.next()) {
+                User user = new User(
+                        resultSet.getString("username"),
+                        resultSet.getString("name"),
+                        resultSet.getString("address"),
+                        resultSet.getString("phone"));
+                users.add(user);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         return null;
     }
 }
