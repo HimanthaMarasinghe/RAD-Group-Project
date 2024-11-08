@@ -126,9 +126,10 @@ public class UserDAOImpl implements UserDAO {
                         resultSet.getString("phone"));
                 users.add(user);
             }
+            return users;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return null;
+//        return null;
     }
 }
