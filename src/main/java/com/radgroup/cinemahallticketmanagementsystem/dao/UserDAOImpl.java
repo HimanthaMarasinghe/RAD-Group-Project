@@ -78,19 +78,20 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public boolean updateUserPassword(User user) {
+        System.out.println("updateUserPassword");
         try{
             Connection conn = Database.getConnection();
             String query = "UPDATE users SET password = ? WHERE username = ?";
             PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setString(1, user.getUsername());
-            stmt.setString(2, user.getPassword());
+            stmt.setString(1, user.getPassword());
+            stmt.setString(2, user.getUsername());
             stmt.executeUpdate();
             stmt.close();
             conn.close();
+            return true;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return false;
     }
 
     @Override
@@ -114,7 +115,7 @@ public class UserDAOImpl implements UserDAO {
         ArrayList<User> users = new ArrayList<>();
         try{
             Connection conn = Database.getConnection();
-            String query = "SELECT * FROM users WHERE role = Employee";
+            String query = "SELECT * FROM users WHERE role = 'Employee'";
             PreparedStatement stmt = conn.prepareStatement(query);
             ResultSet resultSet = stmt.executeQuery();
 

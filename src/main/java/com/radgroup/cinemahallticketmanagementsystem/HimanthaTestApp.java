@@ -1,5 +1,8 @@
 package com.radgroup.cinemahallticketmanagementsystem;
 
+import com.radgroup.cinemahallticketmanagementsystem.dao.UserDAO;
+import com.radgroup.cinemahallticketmanagementsystem.dao.UserDAOImpl;
+import com.radgroup.cinemahallticketmanagementsystem.models.User;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -7,23 +10,11 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class HimanthaTestApp extends Application {
-
-    /**
-     * This variable is set when the user log in. Can be used anywhere in the code.
-     */
-    public static String userName;
-
-    @Override
-    public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Main.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Sign Up!");
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    public static void main(String[] args) {
-        launch();
+public class HimanthaTestApp
+{
+    public static void main (String[] args){
+        UserDAO UDAO = new UserDAOImpl();
+        User user = new User("a", "a", "a", "a", "updated", "emp");
+        UDAO.updateUserPassword(user);
     }
 }
