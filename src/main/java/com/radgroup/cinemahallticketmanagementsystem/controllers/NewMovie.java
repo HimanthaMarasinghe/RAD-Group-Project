@@ -40,12 +40,40 @@ public class NewMovie extends dialogBox {
     private TextField newTicketPriceField;
 
     private java.io.File file;
+    private boolean movieIdExist;
+
+    private String previousPriceInput = "0";
+
+    /**
+     * Making sure price field only accept integer values.
+     * @param event
+     */
+    @FXML
+    private void filterPriceInput(KeyEvent event) {
+        if(newTicketPriceField.getText().matches("\\d*")) {
+            previousPriceInput = newTicketPriceField.getText();
+        }else
+            newTicketPriceField.setText(previousPriceInput);
+    }
+
 
     @FXML
     private void handleTextInput(KeyEvent event) {
         String inputText = newMovieIdField.getText();
         if (inputText.length() > 5) {
             newMovieIdField.setText(inputText.substring(0, 5));
+        }
+
+        MovieDAO MDAO = new MovieDAOImpl();
+        Movie movieWithSameID = MDAO.getMovie(inputText);
+        movieIdExist = movieWithSameID != null;
+    }
+
+    @FXML
+    private void trimDuration(KeyEvent event) {
+        String inputText = newDurationField.getText();
+        if (inputText.length() > 10) {
+            newDurationField.setText(inputText.substring(0, 10));
         }
     }
 
@@ -61,13 +89,19 @@ public class NewMovie extends dialogBox {
             alert.setTitle("Error");
             alert.setContentText("Input fields cannot be empty");
             alert.showAndWait();
+        }else if (movieIdExist){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("Movie ID already exist");
+            alert.showAndWait();
         }else{
             int priceInt = Integer.parseInt(price);
             Movie newMovie = new Movie(id, name, duration, priceInt);
             MovieDAO MDAO = new MovieDAOImpl();
             MDAO.addMovie(newMovie);
 
-            Utility.SaveImage(newMovie.getmovieId(), file, "moviePosters");
+            if(file != null)
+                Utility.SaveImage(newMovie.getmovieId(), file, "moviePosters");
 
             dialog.setResult(ButtonType.OK);
             dialog.close();
