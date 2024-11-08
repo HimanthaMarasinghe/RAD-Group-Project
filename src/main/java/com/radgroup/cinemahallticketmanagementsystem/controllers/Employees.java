@@ -1,5 +1,7 @@
 package com.radgroup.cinemahallticketmanagementsystem.controllers;
 
+import com.radgroup.cinemahallticketmanagementsystem.dao.UserDAO;
+import com.radgroup.cinemahallticketmanagementsystem.dao.UserDAOImpl;
 import com.radgroup.cinemahallticketmanagementsystem.models.Customer;
 import com.radgroup.cinemahallticketmanagementsystem.models.User;
 import javafx.collections.FXCollections;
@@ -38,12 +40,12 @@ public class Employees extends CoreController implements Cont{
         System.out.println("Customers Initializes");
 
         //ToDo : This code block is hard coded to create initial data. Should be removed after CustomerDOBImpl class is created
-        testUsersList.clear();
-        testUsersList.add(new User("TestUser", "PPP", "Emp", "0987654321"));
-        testUsersList.add(new User("TestUser", "PPP", "Emp", "0987654321"));
-        testUsersList.add(new User("TestUser", "PPP", "Emp", "0987654321"));
-        testUsersList.add(new User("TestUser", "PPP", "Emp", "0987654321"));
-        testUsersList.add(new User("TestUser", "PPP", "Emp", "0987654321"));
+//        testUsersList.clear();
+//        testUsersList.add(new User("TestUser", "PPP", "Emp", "0987654321"));
+//        testUsersList.add(new User("TestUser", "PPP", "Emp", "0987654321"));
+//        testUsersList.add(new User("TestUser", "PPP", "Emp", "0987654321"));
+//        testUsersList.add(new User("TestUser", "PPP", "Emp", "0987654321"));
+//        testUsersList.add(new User("TestUser", "PPP", "Emp", "0987654321"));
 
 
 
@@ -66,7 +68,8 @@ public class Employees extends CoreController implements Cont{
 
     private void refresh(){
         empList.clear();
-        empList.addAll(getAllUsers());
+        UserDAO UDAO = new UserDAOImpl();
+        empList.addAll(UDAO.listAllEmployees());
     }
     
     public void setView(Object data) {
