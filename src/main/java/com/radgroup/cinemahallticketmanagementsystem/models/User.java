@@ -1,5 +1,7 @@
 package com.radgroup.cinemahallticketmanagementsystem.models;
 
+import java.util.Objects;
+
 public class User {
     private String username;
     private String name;
@@ -70,5 +72,22 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public boolean areAttributesEqual(User other) {
+        if (other == null) {
+            System.out.println("This ocurd");
+            return false;
+        }
+
+        System.out.println(Objects.equals(this.username, other.username));
+        System.out.println(Objects.equals(this.name, other.name));
+        System.out.println(Objects.equals(this.address, other.address));
+        System.out.println(Objects.equals(this.phone, other.phone));
+
+        return Objects.equals(this.username, other.username) &&
+                Objects.equals(this.name, other.name) &&
+                Objects.equals(this.address, other.address) &&
+                Objects.equals(this.phone, other.phone);
     }
 }

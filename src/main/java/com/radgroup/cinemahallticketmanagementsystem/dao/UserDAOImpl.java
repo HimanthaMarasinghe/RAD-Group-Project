@@ -15,14 +15,12 @@ public class UserDAOImpl implements UserDAO {
     public boolean addUser(User user) {
         try {
             Connection conn = Database.getConnection();
-            String query = "INSERT INTO users VALUES (?,?,?,?,?,?)";
+            String query = "INSERT INTO users (username, name, address, phone) VALUES (?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(query);
             ps.setString(1, user.getUsername());
             ps.setString(2, user.getName());
             ps.setString(3, user.getAddress());
             ps.setString(4, user.getPhone());
-            ps.setString(5, user.getPassword());
-            ps.setString(6, user.getRole());
             ps.executeUpdate();
             ps.close();
             conn.close();
@@ -98,7 +96,7 @@ public class UserDAOImpl implements UserDAO {
     public boolean deleteUser(String username) {
         try{
             Connection conn = Database.getConnection();
-            String query = "DELETE FROM users WHERE usename = ?";
+            String query = "DELETE FROM users WHERE username = ?";
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, username);
             stmt.executeUpdate();
