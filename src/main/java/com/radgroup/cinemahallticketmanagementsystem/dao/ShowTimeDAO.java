@@ -1,6 +1,7 @@
 package com.radgroup.cinemahallticketmanagementsystem.dao;
 
 import com.radgroup.cinemahallticketmanagementsystem.models.ShowTime;
+import com.radgroup.cinemahallticketmanagementsystem.models.Upcoming;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -15,4 +16,5 @@ public interface ShowTimeDAO {
     public ArrayList<String> getAllShowTimes(String movieId, LocalDate date);
     public int getShowId(ShowTime showTime);
     public void updateSeatCount(int flag, int sid);
+    public ArrayList<Upcoming> listAllUpcomingShowTimes();
 }
