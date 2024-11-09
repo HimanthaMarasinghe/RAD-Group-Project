@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 
-<DialogPane prefHeight="507.0" prefWidth="1375.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.radgroup.cinemahallticketmanagementsystem.controllers.NewTicket">
+<DialogPane prefHeight="594.0" prefWidth="1375.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.radgroup.cinemahallticketmanagementsystem.controllers.UpdateTicket">
    <content>
       <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="486.0" prefWidth="1243.0">
         <columnConstraints>
@@ -81,24 +81,30 @@
                   <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="340.0" prefHeight="30.0" prefWidth="231.0" spacing="10.0">
                      <children>
                         <Label prefHeight="18.0" prefWidth="130.0" text="Customer Phone" />
-                        <TextField fx:id="cusPhoneField" onKeyTyped="#handleCustomerPhoneInsert" prefHeight="26.0" prefWidth="250.0" />
+                        <TextField fx:id="cusPhoneField" prefHeight="26.0" prefWidth="250.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="360.0" prefHeight="30.0" prefWidth="231.0" spacing="10.0">
                      <children>
                         <Label prefHeight="18.0" prefWidth="130.0" text="Customer Name" />
-                        <TextField fx:id="cusName" editable="false" prefHeight="26.0" prefWidth="250.0" promptText="Enter customer phone number first" />
+                        <TextField fx:id="cusName" editable="false" prefHeight="26.0" prefWidth="250.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="432.0" prefHeight="30.0" prefWidth="231.0" spacing="10.0">
                      <children>
-                        <Label prefHeight="18.0" prefWidth="130.0" text="Customer Date of Birth" />
-                        <TextField fx:id="cusDoB" editable="false" prefHeight="26.0" prefWidth="250.0" promptText="Enter customer phone number first" />
+                        <Label prefHeight="18.0" prefWidth="130.0" text="Customer age" />
+                        <TextField fx:id="cusAge" editable="false" prefHeight="26.0" prefWidth="250.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="468.0" prefHeight="30.0" prefWidth="231.0" spacing="10.0">
+                     <children>
+                        <Label prefHeight="18.0" prefWidth="130.0" text="Employee" />
+                        <TextField fx:id="employeeName" editable="false" prefHeight="26.0" prefWidth="250.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="74.0" prefWidth="266.0" spacing="20.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#addNewTicket" prefWidth="80.0" text="Add Ticket" />
+                        <Button mnemonicParsing="false" onAction="#updateTicket" prefWidth="80.0" text="Update" />
                         <Button layoutX="107.0" layoutY="35.0" mnemonicParsing="false" onAction="#cancel" prefHeight="26.0" prefWidth="80.0" text="Cancel" />
                      </children>
                   </HBox>

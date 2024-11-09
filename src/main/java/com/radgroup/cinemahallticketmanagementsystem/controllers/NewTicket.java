@@ -143,8 +143,13 @@ public class NewTicket extends dialogBox {
     @FXML
     void selectDate(ActionEvent event) {
 
+        showTime.setOnAction(null);
+
         showTime.getItems().clear();
         seatId.clear();
+
+        showTime.setOnAction(this::loardSeats);
+        clearGrid();
 
         SD = showDate.getValue();
         ShowTimeDAO SDAO = new ShowTimeDAOImpl();
@@ -158,9 +163,20 @@ public class NewTicket extends dialogBox {
     @FXML
     void selectMovie(ActionEvent event) {
 
-        showDate.getItems().clear();
-        showTime.getItems().clear();
+
+        showDate.setOnAction(null);
+        showTime.setOnAction(null);
+
+        showDate.getSelectionModel().clearSelection();
+        showTime.getSelectionModel().clearSelection();
+
+        showDate.setOnAction(this::selectDate);
+        showTime.setOnAction(this::loardSeats);
+
         seatId.clear();
+        showTime.getItems().clear();
+        showDate.getItems().clear();
+        clearGrid();
 
         String MID = movieID.getValue();
         MovieDAO MDAO = new MovieDAOImpl();
@@ -178,8 +194,7 @@ public class NewTicket extends dialogBox {
 
     @FXML
     public void initialize() {
-        Arrays.fill(seatAvailability, false);
-        refreshSeatGrid();
+        clearGrid();
         MovieDAO MDAO = new MovieDAOImpl();
         movieID.getItems().addAll(MDAO.getAllMovieIds());
     }
@@ -218,6 +233,11 @@ public class NewTicket extends dialogBox {
 
     private void handleSeatClick(MouseEvent event, String SID) {
         seatId.setText(SID);
+    }
+
+    private void clearGrid() {
+        Arrays.fill(seatAvailability, false);
+        refreshSeatGrid();
     }
 
 }
