@@ -114,12 +114,12 @@ public class UpdateTicket extends dialogBox {
     }
 
     public void setDialogBox(Object data) {
-//        Object[] objectArray = (Object[]) data;
-//        ticket = (Ticket) objectArray[0];
-//        stdControler = (ShowTimeDetails) objectArray[1];
-//        ticketController = (TicketCon) objectArray[2];
+        Object[] objectArray = (Object[]) data;
+        ticket = (Ticket) objectArray[0];
+        stdControler = (ShowTimeDetails) objectArray[1];
+        ticketController = (TicketCon) objectArray[2];
 
-        ticket = (Ticket) data;
+//        ticket = (Ticket) data;
 
         MovieDAO MDAO = new MovieDAOImpl();
         ShowTimeDAO SDAO = new ShowTimeDAOImpl();
@@ -280,13 +280,17 @@ public class UpdateTicket extends dialogBox {
 //            System.out.println();
 
             ShowTimeDAO SDAO = new ShowTimeDAOImpl();
-            System.out.println("Show time ID :" + SDAO.getShowId(showT));
+//            showT.setShowid(SDAO.getShowId(showT));
             Ticket updatedTicket = new Ticket(ticket.getTicketId(), SDAO.getShowId(showT), customerPhone, userName, seatId.getText());
+//            Ticket updatedTicket = new Ticket(ticket.getTicketId(), showT.getShowid(), customerPhone, userName, seatId.getText());
             TDAO.updateTicket(updatedTicket);
-//            Object[] objectsToPass = {updatedTicket, stdControler};
-//            ticketController.setDialogBox(objectsToPass);
-//            stdControler.setDialogBox(showT);
-//            stdControler.dia
+            Object[] objectsToPass = {updatedTicket, stdControler};
+            ticketController.setDialogBox(objectsToPass);
+
+
+            stdControler.setDialogBox();
+
+
             dialog.setResult(ButtonType.OK);
             dialog.close();
         }else{
