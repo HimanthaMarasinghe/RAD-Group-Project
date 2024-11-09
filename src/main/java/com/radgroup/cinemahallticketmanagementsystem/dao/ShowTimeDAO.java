@@ -14,4 +14,5 @@ public interface ShowTimeDAO {
     public int getNumberOfShowTimes(LocalDate fromDate, LocalDate toDate, String timeSlot);
     public ArrayList<String> getAllShowTimes(String movieId, LocalDate date);
     public int getShowId(ShowTime showTime);
+    public void updateSeatCount(int flag, int sid);
 }

@@ -60,6 +60,7 @@ public class UpdateTicket extends dialogBox {
     private static final int ROW_COUNT = 10;    // Number of rows
     private static final int SEATS_PER_ROW = 20; // Seats per row
     private Ticket ticket;
+    private Ticket preTicket;
 
     /**
      * Used to refresh the Ticket details window.
@@ -87,6 +88,7 @@ public class UpdateTicket extends dialogBox {
      * ShowTime ID
      */
     private int SID;
+    private int preSID;
 
     private String customerPhone;
 
@@ -116,6 +118,7 @@ public class UpdateTicket extends dialogBox {
     public void setDialogBox(Object data) {
         Object[] objectArray = (Object[]) data;
         ticket = (Ticket) objectArray[0];
+        preTicket = (Ticket) objectArray[0];
         stdControler = (ShowTimeDetails) objectArray[1];
         ticketController = (TicketCon) objectArray[2];
 
@@ -127,6 +130,7 @@ public class UpdateTicket extends dialogBox {
         UserDAO UDAO = new UserDAOImpl();
 
         SID = ticket.getShowTimeId();
+        preSID = ticket.getShowTimeId();
         ShowTime showtime = SDAO.getShowTime(SID);
         selectedMovie = MDAO.getMovie(showtime.getMovieid());
         Customer customer = CDAO.getCustomer(ticket.getCustomerPhone());
@@ -208,8 +212,8 @@ public class UpdateTicket extends dialogBox {
         return label;
     }
 
-    private void handleSeatClick(MouseEvent event, String SID) {
-        seatId.setText(SID);
+    private void handleSeatClick(MouseEvent event, String SeatID) {
+        seatId.setText(SeatID);
     }
 
     @FXML
@@ -272,18 +276,28 @@ public class UpdateTicket extends dialogBox {
         System.out.println(seatId);
 
 
-        if(movieID.getValue() != null && showDate.getValue() != null && showTime.getValue() != null && seatId != null) {
+        if(movieID.getValue() != null && showDate.getValue() != null && showTime.getValue() != null && !seatId.getText().isEmpty()) {
+
             TicketDAO TDAO = new TicketDAOImpl();
             ShowTime showT = new ShowTime(showDate.getValue(), showTime.getValue(), movieID.getValue());
 
-//            System.out.println(showDate.getValue());
-//            System.out.println();
 
             ShowTimeDAO SDAO = new ShowTimeDAOImpl();
 //            showT.setShowid(SDAO.getShowId(showT));
             Ticket updatedTicket = new Ticket(ticket.getTicketId(), SDAO.getShowId(showT), customerPhone, userName, seatId.getText());
+            if(preTicket.areAttributesEqual(updatedTicket)){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("No new Data");
+                alert.setContentText("No new data provide");
+                alert.showAndWait();
+                return;
+            }
 //            Ticket updatedTicket = new Ticket(ticket.getTicketId(), showT.getShowid(), customerPhone, userName, seatId.getText());
             TDAO.updateTicket(updatedTicket);
+            if(SID != preSID){
+                SDAO.updateSeatCount(0, preSID); //Increase seat availability
+                SDAO.updateSeatCount(1, SID);    //Decrease seat availability
+            }
             Object[] objectsToPass = {updatedTicket, stdControler};
             ticketController.setDialogBox(objectsToPass);
 
