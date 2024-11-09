@@ -87,13 +87,12 @@ public class TicketDAOImpl implements TicketDAO{
     public boolean updateTicket(Ticket ticket) {
         try{
             Connection con = Database.getConnection();
-            String query = "UPDATE tickets SET showTimeId = ?, customerPhone = ?, empUserName = ?, seatNo = ? WHERE ticketID = ?";
+            String query = "UPDATE tickets SET showTimeId = ?, empUserName = ?, seatNo = ? WHERE ticketID = ?";
             PreparedStatement ps = con.prepareStatement(query);
             ps.setInt(1, ticket.getShowTimeId());
-            ps.setString(2, ticket.getCustomerPhone());
-            ps.setString(3, ticket.getEmpUsername());
-            ps.setString(4, ticket.getSeatNo());
-            ps.setInt(5, ticket.getTicketId());
+            ps.setString(2, ticket.getEmpUsername());
+            ps.setString(3, ticket.getSeatNo());
+            ps.setInt(4, ticket.getTicketId());
             ps.executeUpdate();
             ps.close();
             con.close();
