@@ -70,9 +70,9 @@ public class TicketCon extends dialogBox{
 
     @FXML
     void updateTicket(ActionEvent event) {
-//        Object[] objectArray = {ticket, stdController, this};
-//        showDialogBox("UpdateTicket", "Update Ticket", objectArray);
-        showDialogBox("UpdateTicket", "Update Ticket", ticket);
+        Object[] objectArray = {ticket, stdController, this};
+        showDialogBox("UpdateTicket", "Update Ticket", objectArray);
+//        showDialogBox("UpdateTicket", "Update Ticket", ticket);
 
     }
 
