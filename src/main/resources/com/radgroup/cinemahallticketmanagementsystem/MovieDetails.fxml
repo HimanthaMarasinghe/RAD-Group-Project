@@ -82,7 +82,7 @@
                         <Font size="18.0" />
                      </font>
                   </Text>
-                  <Label styleClass="Label" text="Right-click on any entry for more options">
+                  <Label text="Right-click on any entry for more options">
                      <font>
                         <Font size="10.0" />
                      </font>
