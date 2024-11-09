@@ -1,5 +1,7 @@
 package com.radgroup.cinemahallticketmanagementsystem.models;
 
+import java.util.Objects;
+
 public class Ticket {
     private int ticketId;
     private int showTimeId;
@@ -67,5 +69,13 @@ public class Ticket {
 
     public void setSeatNo(String newSeatNo){
         this.seatNo = newSeatNo;
+    }
+
+    public boolean areAttributesEqual(Ticket other) {
+        if (other == null) return false;
+
+        return Objects.equals(this.customerPhone, other.customerPhone) &&
+                Objects.equals(this.seatNo, other.seatNo) &&
+                this.showTimeId == other.showTimeId;
     }
 }

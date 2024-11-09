@@ -152,6 +152,25 @@ public class ShowTimeDAOImpl implements ShowTimeDAO {
     }
 
     @Override
+    public void updateSeatCount(int flag, int sid) {
+        try {
+            Connection con = Database.getConnection();
+            String query;
+            if (flag == 1)
+                query = "UPDATE showtime SET availableSeats = availableSeats - 1 WHERE sid = ?";
+            else
+                query = "UPDATE showtime SET availableSeats = availableSeats + 1 WHERE sid = ?";
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setInt(1, sid);
+            ps.executeUpdate();
+            ps.close();
+            con.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public boolean updateShowTime(ShowTime showtime) {
         try (Connection connection = Database.getConnection()) {
             String sql = "UPDATE showtime SET date = ?, timeslot = ?, mid = ? WHERE sid = ?";
