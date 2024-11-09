@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
+import static com.radgroup.cinemahallticketmanagementsystem.App.isManager;
+
 public class Movies extends CoreController implements Cont {
 
     @FXML
@@ -66,7 +68,5 @@ public class Movies extends CoreController implements Cont {
         movieGrid.setHgap(10);
         movieScrloPane.setContent(movieGrid);
     }
-    
-    
 
 }
