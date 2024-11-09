@@ -74,6 +74,8 @@ public class NewTicket extends dialogBox {
     private String previousPhoneInput;
     private boolean newCustomer = false;
 
+    private Label previouslyClicked;
+
     @FXML
     void addNewTicket(ActionEvent event) {
 
@@ -283,6 +285,10 @@ public class NewTicket extends dialogBox {
 
     private void handleSeatClick(MouseEvent event, String SID) {
         seatId.setText(SID);
+        if(previouslyClicked != null)
+            previouslyClicked.setStyle("-fx-background-color: #0fe000; -fx-text-fill: #000000; -fx-alignment: center; -fx-font-weight: bold;");
+        previouslyClicked = (Label) event.getSource();
+        previouslyClicked.setStyle("-fx-background-color: #ffe700; -fx-text-fill: #000000; -fx-alignment: center; -fx-font-weight: bold;");
     }
 
     private void clearGrid() {

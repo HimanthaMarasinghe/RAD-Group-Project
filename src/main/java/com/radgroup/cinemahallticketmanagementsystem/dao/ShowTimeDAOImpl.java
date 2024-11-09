@@ -73,7 +73,7 @@ public class ShowTimeDAOImpl implements ShowTimeDAO {
     public ArrayList<ShowTime> listAllShowTimesForMovie(String movieId) {
         ArrayList<ShowTime> showtimes = new ArrayList<>();
         try (Connection connection = Database.getConnection()) {
-            String sql = "SELECT * FROM showtime WHERE mid = ?";
+            String sql = "SELECT * FROM showtime WHERE mid = ? AND date > CURDATE()";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, movieId);
             ResultSet resultSet = statement.executeQuery();
@@ -175,16 +175,18 @@ public class ShowTimeDAOImpl implements ShowTimeDAO {
     public ArrayList<Upcoming> listAllUpcomingShowTimes() {
         try {
             Connection con = Database.getConnection();
-            String sql = "SELECT date, timeslot, movie.MName, availableSeats FROM showtime INNER JOIN movie ON showtime.mid = movie.mid";
+            String sql = "SELECT date, timeslot, movie.MName, availableSeats, showtime.mid, sid FROM showtime INNER JOIN movie ON showtime.mid = movie.mid WHERE date > CURDATE() ORDER BY date ASC, timeslot ASC";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet resultSet = ps.executeQuery();
             ArrayList<Upcoming> upcomings = new ArrayList<>();
             while (resultSet.next()) {
                 Upcoming upcoming = new Upcoming(
-                        String.valueOf(resultSet.getDate("date")),
+                        resultSet.getDate("date").toLocalDate(),
                         resultSet.getString("timeslot"),
                         resultSet.getString("movie.MName"),
-                        String.valueOf(resultSet.getInt("availableSeats"))
+                        resultSet.getInt("availableSeats"),
+                        resultSet.getString("mid"),
+                        resultSet.getInt("sid")
                 );
                 upcomings.add(upcoming);
             }

@@ -58,6 +58,10 @@ public class TicketCon extends dialogBox{
         if (result.get() == ButtonType.OK) {
             TicketDAO TDAO = new TicketDAOImpl();
             TDAO.deleteTicket(ticket.getTicketId());
+
+            ShowTimeDAO SDAO = new ShowTimeDAOImpl();
+            SDAO.updateSeatCount(0, ticket.getShowTimeId());
+
             stdController.refreshSeatGrid();
             dialog.close();
         }

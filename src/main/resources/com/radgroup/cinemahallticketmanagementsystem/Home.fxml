@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -16,6 +18,13 @@
             <TableColumn fx:id="movie" minWidth="144.800048828125" prefWidth="198.40008544921875" text="Movie" />
             <TableColumn fx:id="seat" minWidth="66.4000244140625" prefWidth="107.19992065429688" text="Seat Availability" />
         </columns>
+         <contextMenu>
+            <ContextMenu>
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#showTickets" text="See Tickets" />
+              </items>
+            </ContextMenu>
+         </contextMenu>
     </TableView>
       <Button layoutX="145.0" layoutY="14.0" mnemonicParsing="false" onAction="#AddNewTicket" text="Add New Ticket" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
       <Label layoutX="28.0" layoutY="55.0" text="Upcoming Shows" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="50.0">
