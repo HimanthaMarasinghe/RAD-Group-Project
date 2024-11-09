@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<DialogPane prefHeight="305.0" prefWidth="782.0" stylesheets="@CSS/MovieDetails.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.radgroup.cinemahallticketmanagementsystem.controllers.UpdateShowTime">
+<DialogPane prefHeight="305.0" prefWidth="782.0" stylesheets="@CSS/Style.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.radgroup.cinemahallticketmanagementsystem.controllers.UpdateShowTime">
    <content>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
