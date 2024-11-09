@@ -1,5 +1,5 @@
 DialogPane {
-    -fx-background-color: #696969; /* Ash */
+    -fx-background-color: #dff2f9; /* Ash */
     -fx-border-color: black;
     -fx-border-width: 1px;
     -fx-border-radius: 5px;
@@ -10,29 +10,38 @@ header {
 }
 
 Text {
-    -fx-fill: white;
+    -fx-fill: black;
 }
 
-.Label {
-    -fx-text-fill: white;
+VBox > Text {
+    -fx-font-weight: bold;
+}
+
+VBox > Label {
+    -fx-text-fill: black;
 }
 
 TextField {
     -fx-background-color: white;
     -fx-border-color: black;
     -fx-border-width: 1px;
-    -fx-border-radius: 3px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
 }
 
 Button {
-    -fx-background-color: #8B0000; /* Dark Red */
-    -fx-text-fill: white;
+    -fx-background-color: #FFD700;
+    -fx-text-fill: black;
     -fx-border-color: black;
     -fx-border-width: 1px;
-    -fx-border-radius: 3px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px; /* Ensure background radius is smaller than border radius */
+    -fx-padding: 5px; /* Adjust padding */
+    -fx-font-weight: bold;
 }
 
-.table-view {
-    -fx-background-color: #f0f0f0; /* Background color for cells */
-    -fx-text-fill: #333333; /* Text color for cells */
+Line {
+    -fx-stroke: black;
 }
+
+
