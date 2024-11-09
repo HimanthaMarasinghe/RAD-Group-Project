@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<DialogPane prefHeight="552.0" prefWidth="413.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.radgroup.cinemahallticketmanagementsystem.controllers.TicketCon">
+<DialogPane prefHeight="552.0" prefWidth="413.0" stylesheets="@CSS/Style.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.radgroup.cinemahallticketmanagementsystem.controllers.TicketCon">
    <content>
       <VBox alignment="BOTTOM_CENTER" prefHeight="531.0" prefWidth="416.0" spacing="10.0">
          <children>
