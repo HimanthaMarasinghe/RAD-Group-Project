@@ -1,0 +1,38 @@
+DialogPane {
+    -fx-background-color: #696969; /* Ash */
+    -fx-border-color: black;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+}
+
+header {
+    -fx-background-color: #8B0000; /* Dark Red */
+}
+
+Text {
+    -fx-fill: white;
+}
+
+.Label {
+    -fx-text-fill: white;
+}
+
+TextField {
+    -fx-background-color: white;
+    -fx-border-color: black;
+    -fx-border-width: 1px;
+    -fx-border-radius: 3px;
+}
+
+Button {
+    -fx-background-color: #8B0000; /* Dark Red */
+    -fx-text-fill: white;
+    -fx-border-color: black;
+    -fx-border-width: 1px;
+    -fx-border-radius: 3px;
+}
+
+.table-view {
+    -fx-background-color: #f0f0f0; /* Background color for cells */
+    -fx-text-fill: #333333; /* Text color for cells */
+}
