@@ -28,10 +28,6 @@ public class Home extends CoreController implements Cont{
     private TableView<Upcoming> UpcomingTable;
 
     private ObservableList<Upcoming> Up;
-//
-//    private Upcoming u1 = new Upcoming("aa", "bb", "cc", "dd");
-//    private Upcoming u2 = new Upcoming("aa", "bb", "cc", "dd");
-//    private Upcoming u3 = new Upcoming("aa", "bb", "cc", "dd");
 
     public void initialize() {
         System.out.println("Home Initializes");
@@ -44,7 +40,6 @@ public class Home extends CoreController implements Cont{
         Up = FXCollections.observableArrayList();
         Up.addAll(SDAO.listAllUpcomingShowTimes());
         UpcomingTable.setItems(Up);
-//        test();
     }
 
     @Override
@@ -57,10 +52,4 @@ public class Home extends CoreController implements Cont{
         System.out.println("AddNewTicket method called from Home controller");
         showDialogBox("NewTicket", "New Ticket");
     }
-
-//    private void test(){
-//        for (int i = 0; i < 10; i++) {
-//            Up.add(new Upcoming("Test","Test","Test","Test"));
-//        }
-//    }
 }
