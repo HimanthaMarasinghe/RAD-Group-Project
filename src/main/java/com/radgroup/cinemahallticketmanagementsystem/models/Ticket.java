@@ -12,12 +12,26 @@ public class Ticket {
         this.ticketId = ticketIdIn;
     }
 
+    /**
+     * When inserting, this constructor should be used. Because ticketId should not be given. It is auto incremented by the DB.
+     * @param showTimeIdIn
+     * @param customerPhoneIn
+     * @param empUsernameIn
+     * @param seatNoIn
+     */
     public Ticket(int showTimeIdIn, String customerPhoneIn, String empUsernameIn, String seatNoIn){
         this.showTimeId = showTimeIdIn;
         this.customerPhone = customerPhoneIn;
         this.empUsername = empUsernameIn;
         this.seatNo = seatNoIn;
     }
+
+//    public Ticket(int ticketId, int showTimeId, String empUsername, String seatNo) {
+//        this.ticketId = ticketId;
+//        this.showTimeId = showTimeId;
+//        this.empUsername = empUsername;
+//        this.seatNo = seatNo;
+//    }
 
     public int getTicketId(){
         return ticketId;

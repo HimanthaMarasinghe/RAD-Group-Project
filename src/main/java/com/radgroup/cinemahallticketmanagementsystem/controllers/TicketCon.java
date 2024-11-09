@@ -70,13 +70,16 @@ public class TicketCon extends dialogBox{
 
     @FXML
     void updateTicket(ActionEvent event) {
+//        Object[] objectArray = {ticket, stdController, this};
+//        showDialogBox("UpdateTicket", "Update Ticket", objectArray);
+        showDialogBox("UpdateTicket", "Update Ticket", ticket);
 
     }
 
     public void setDialogBox(Object data){
         Object[] objectArray = (Object[]) data;
         ticket = (Ticket) objectArray[0];
-         stdController = (ShowTimeDetails) objectArray[1];
+        stdController = (ShowTimeDetails) objectArray[1];
 
         MovieDAO MDAO = new MovieDAOImpl();
         ShowTimeDAO SDAO = new ShowTimeDAOImpl();
