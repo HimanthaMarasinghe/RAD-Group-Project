@@ -7,10 +7,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="432.0" prefWidth="578.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.radgroup.cinemahallticketmanagementsystem.controllers.Movies">
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="432.0" prefWidth="578.0" stylesheets="@CSS/Style.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.radgroup.cinemahallticketmanagementsystem.controllers.Movies">
     <children>
       <Button layoutX="145.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleAddNewMovie" text="Add New Movies" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
-      <Label layoutX="28.0" layoutY="55.0" text="Now Showing" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="70.0">
+      <Label layoutX="28.0" layoutY="55.0" styleClass="Text" text="Now Showing" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="70.0">
          <font>
             <Font size="18.0" />
          </font>

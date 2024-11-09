@@ -1,5 +1,5 @@
-DialogPane {
-    -fx-background-color: #dff2f9; /* Ash */
+DialogPane ,AnchorPane, ScrollPane ,.VBox{
+    -fx-background-color: #dff2f9; /* background */
     -fx-border-color: black;
     -fx-border-width: 1px;
     -fx-border-radius: 5px;
@@ -11,6 +11,10 @@ header {
 
 Text {
     -fx-fill: black;
+}
+
+.Text{
+    -fx-font-weight: bold;
 }
 
 VBox > Text {
@@ -30,7 +34,7 @@ TextField {
 }
 
 
-Button {
+Button ,.Label{
     -fx-background-color: #FFD700;
     -fx-text-fill: black;
     -fx-border-color: black;
@@ -44,5 +48,3 @@ Button {
 Line {
     -fx-stroke: black;
 }
-
-
