@@ -48,3 +48,21 @@ Button ,.Label{
 Line {
     -fx-stroke: black;
 }
+
+/* TabPane Styles */
+.tab-pane {
+    -fx-background-color: #dff2f9; /* Match background color */
+    -fx-border-color: transparent; /* Remove border */
+}
+
+/* Tab Styles */
+.tab {
+    -fx-text-fill: black; /* Text color */
+    -fx-font-weight: bold; /* Bold font */
+    -fx-background-color: transparent; /* Transparent background */
+}
+
+.tab:selected {
+    -fx-background-color: #FFD700; /* Selected tab background color */
+    -fx-text-fill: white; /* Text color for selected tab */
+}
