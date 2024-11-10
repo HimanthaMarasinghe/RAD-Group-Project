@@ -25,6 +25,7 @@ VBox > Label {
     -fx-text-fill: black;
 }
 
+PasswordField,
 TextField {
     -fx-background-color: white;
     -fx-border-color: black;
@@ -65,4 +66,11 @@ Line {
 .tab:selected {
     -fx-background-color: #FFD700; /* Selected tab background color */
     -fx-text-fill: white; /* Text color for selected tab */
+}
+
+.seatGrid{
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #000000;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
 }
