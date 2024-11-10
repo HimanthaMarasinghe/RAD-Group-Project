@@ -70,10 +70,12 @@ public class ShowTimeDAOImpl implements ShowTimeDAO {
         return null;
     }
 
-    public ArrayList<ShowTime> listAllShowTimesForMovie(String movieId) {
+    public ArrayList<ShowTime> listAllShowTimesForMovie(String movieId, int flag) {
         ArrayList<ShowTime> showtimes = new ArrayList<>();
         try (Connection connection = Database.getConnection()) {
-            String sql = "SELECT * FROM showtime WHERE mid = ? AND date > CURDATE()";
+            String sql = "SELECT * FROM showtime WHERE mid = ?";
+            if (flag == 1)
+                sql += " AND date > CURDATE()";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, movieId);
             ResultSet resultSet = statement.executeQuery();

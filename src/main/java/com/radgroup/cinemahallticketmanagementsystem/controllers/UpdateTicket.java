@@ -151,7 +151,7 @@ public class UpdateTicket extends dialogBox {
         seatId.setText(ticket.getSeatNo());
 
         showDate.getItems().clear();
-        ArrayList<ShowTime> showTimes = SDAO.listAllShowTimesForMovie(selectedMovie.getmovieId());
+        ArrayList<ShowTime> showTimes = SDAO.listAllShowTimesForMovie(selectedMovie.getmovieId(), 1);
         for (ShowTime st : showTimes) {
             showDate.getItems().add(st.getDate());
         }
@@ -268,7 +268,7 @@ public class UpdateTicket extends dialogBox {
         movieImage.setImage(Utility.loadImage(MID, "moviePosters"));
 
         ShowTimeDAO SDAO = new ShowTimeDAOImpl();
-        ArrayList<ShowTime> ShowTimes = SDAO.listAllShowTimesForMovie(MID);
+        ArrayList<ShowTime> ShowTimes = SDAO.listAllShowTimesForMovie(MID, 1);
         for(ShowTime st : ShowTimes) {
             showDate.getItems().add(st.getDate());
         }

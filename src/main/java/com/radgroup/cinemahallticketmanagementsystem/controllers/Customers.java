@@ -30,26 +30,14 @@ public class Customers extends CoreController implements Cont{
 
     private ObservableList<Customer> CusList;
 
-    //ToDo : This arrayList is used as the DB. Should be removed after CustomerDOBImpl class is created
-    public static ArrayList<Customer> testCusList = new ArrayList<>();
-
     public void initialize() {
         System.out.println("Customers Initializes");
-
-//        //ToDo : This code block is hard coded to create initial data. Should be removed after CustomerDOBImpl class is created
-//        LocalDate date = LocalDate.now();
-//        testCusList.add(new Customer("11","John","1234567890",  date));
-//        testCusList.add(new Customer("11","Marry","1234567890",  date));
-//        testCusList.add(new Customer("11","Jane","1234567890",  date));
-//        testCusList.add(new Customer("11","Fread","1234567890",  date));
-//        testCusList.add(new Customer("11","Shagy","1234567890",  date));
 
         cusNameCol.setCellValueFactory(new PropertyValueFactory<Customer, String>("name"));
         cusPhoneCol.setCellValueFactory(new PropertyValueFactory<Customer, String>("phone"));
         cusDobCol.setCellValueFactory(new PropertyValueFactory<Customer, String>("dateOfBirth"));
 
         CusList = FXCollections.observableArrayList();
-//        CusList.addAll();
         cusTable.setItems(CusList);
     }
 
@@ -95,8 +83,6 @@ public class Customers extends CoreController implements Cont{
             Optional<ButtonType> answer = alert.showAndWait();
             if(answer.get() == ButtonType.OK){
 
-//                //ToDo : This method should be replaced with the DOA method to delete Customers.
-//                testCusList.remove(cusSelected);
 
                 CustomerDAO CDAO = new CustomerDAOImpl();
                 CDAO.deleteCustomer(cusSelected.getPhone());
@@ -122,10 +108,5 @@ public class Customers extends CoreController implements Cont{
             System.out.println(cusSelected.getName());
         }
 
-    }
-
-    //ToDo : This method should be deleted and similar method should be implemented in a DAO class.
-    private ArrayList<Customer> getAllCustomers() {
-        return testCusList;
     }
 }

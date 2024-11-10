@@ -238,7 +238,7 @@ public class NewTicket extends dialogBox {
         movieImage.setImage(Utility.loadImage(MID, "moviePosters"));
 
         ShowTimeDAO SDAO = new ShowTimeDAOImpl();
-        ArrayList<ShowTime> ShowTimes = SDAO.listAllShowTimesForMovie(MID);
+        ArrayList<ShowTime> ShowTimes = SDAO.listAllShowTimesForMovie(MID, 1);
         for(ShowTime st : ShowTimes) {
             showDate.getItems().add(st.getDate());
         }

@@ -14,7 +14,7 @@ public class TicketDAOImpl implements TicketDAO{
     public ArrayList<Ticket> getAllTicketsforShowTime(int showTimeID) {
         try{
             Connection con = Database.getConnection();
-            String query = "SELECT * FROM tickets WHERE showTimeId = ? ORDER BY seatNo ASC";
+            String query = "SELECT * FROM tickets WHERE showTimeId = ? ORDER BY LEFT(seatNo, 1), CAST(SUBSTRING(seatNo, 2) AS UNSIGNED) ASC";
             PreparedStatement ps = con.prepareStatement(query);
             ps.setInt(1, showTimeID);
             ResultSet rs = ps.executeQuery();

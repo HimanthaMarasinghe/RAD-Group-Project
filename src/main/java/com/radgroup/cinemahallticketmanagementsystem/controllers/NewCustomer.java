@@ -9,10 +9,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 
 import java.time.LocalDate;
-
-import static com.radgroup.cinemahallticketmanagementsystem.controllers.Customers.testCusList;
 
 public class NewCustomer extends dialogBox{
 
@@ -25,6 +24,9 @@ public class NewCustomer extends dialogBox{
     @FXML
     private DatePicker newCusDOB;
 
+    private String previousPhoneInput;
+    private boolean phoneAlreadyPresent = false;
+
     @FXML
     void addCustomer(ActionEvent event) {
         String name = NewCusName.getText();
@@ -36,12 +38,43 @@ public class NewCustomer extends dialogBox{
             alert.setTitle("Error");
             alert.setContentText("Input fields cannot be empty");
             alert.showAndWait();
+            return;
+        }
+
+
+
+        if(NewCusPhone.getText().length() != 10){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("Phone number must be 10 digits");
+            alert.showAndWait();
+            return;
         }else {
             CustomerDAO CDAO = new CustomerDAOImpl();
-            CDAO.addCustomer(new Customer(name, phone, dob));
-
-            dialog.setResult(ButtonType.OK);
-            dialog.close();
+            Customer customer = CDAO.getCustomer(phone);
+            if((customer != null)) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText("Phone already exists in the Database. Use deferent phone number");
+                alert.showAndWait();
+                return;
+            }
         }
+
+        CustomerDAO CDAO = new CustomerDAOImpl();
+        CDAO.addCustomer(new Customer(name, phone, dob));
+
+        dialog.setResult(ButtonType.OK);
+        dialog.close();
+
+    }
+
+    @FXML
+    void handleCustomerPhoneInsert(KeyEvent event) {
+        String phone = NewCusPhone.getText();
+        if (phone.length() > 10 || !phone.matches("\\d*"))
+            NewCusPhone.setText(previousPhoneInput);
+        else
+            previousPhoneInput = phone;
     }
 }

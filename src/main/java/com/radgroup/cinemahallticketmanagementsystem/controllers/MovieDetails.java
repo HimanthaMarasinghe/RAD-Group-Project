@@ -70,6 +70,13 @@ public class MovieDetails extends dialogBox {
 
     @FXML
     private void handleMovieDelete(ActionEvent event) {
+        if(!showTimeList.isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("You can not delete this movie because there are show times added to this movie. Delete or update thos show times first");
+            alert.showAndWait();
+            return;
+        }
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Delete Movie");
         alert.setHeaderText("Are you sure you want to delete "+selectedMovie.getmovieName()+" ?");
@@ -106,7 +113,7 @@ public class MovieDetails extends dialogBox {
     private void refresh(){
         ShowTimeDAO SDAO = new ShowTimeDAOImpl();
         showTimeList.clear();
-        showTimeList.addAll(SDAO.listAllShowTimesForMovie(selectedMovie.getmovieId()));
+        showTimeList.addAll(SDAO.listAllShowTimesForMovie(selectedMovie.getmovieId(), 0));
     }
 
     @Override
@@ -200,7 +207,9 @@ public class MovieDetails extends dialogBox {
             alert.setHeaderText("No Selection");
             alert.setContentText("Please select a Show Time first");
             alert.showAndWait();
-        }else
+        }else {
             showDialogBox("ShowTimeDetails", "Showtime Details", selectedST);
+            refresh();
+        }
     }
 }
