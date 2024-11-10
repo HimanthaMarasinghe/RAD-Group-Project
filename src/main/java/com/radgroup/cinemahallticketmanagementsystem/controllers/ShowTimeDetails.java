@@ -100,8 +100,9 @@ public class ShowTimeDetails extends dialogBox {
                 Label seatLabel = createSeatLabel(SID, seatAvailability[i]);
 
                 if(!seatAvailability[i++]) {
-                    Object[] objectArray = {tickets.get(t++), this};
+                    Object[] objectArray = {tickets.get(t), this};
                     seatLabel.setOnMouseClicked(event -> handleSeatClick(event, objectArray));
+                    t++;
                 }
 
                 rowContainer.getChildren().add(seatLabel);
