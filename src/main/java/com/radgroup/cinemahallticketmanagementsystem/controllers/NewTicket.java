@@ -8,10 +8,7 @@ import com.radgroup.cinemahallticketmanagementsystem.models.Ticket;
 import com.radgroup.cinemahallticketmanagementsystem.util.Utility;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -19,6 +16,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -57,7 +55,10 @@ public class NewTicket extends dialogBox {
     private TextField cusName;
 
     @FXML
-    private TextField cusDoB;
+    private DatePicker cusDobField;
+
+    @FXML
+    private TextField cusAge;
 
     // Define rows and seats
     private static final int ROW_COUNT = 10;    // Number of rows
@@ -77,16 +78,39 @@ public class NewTicket extends dialogBox {
     void addNewTicket(ActionEvent event) {
 
         if(movieID.getValue() != null && !seatId.getText().isEmpty() && !cusPhoneField.getText().isEmpty()) {
-        if (newCustomer) {
-            CustomerDAO CDAO = new CustomerDAOImpl();
-            CDAO.addCustomer(new Customer(cusName.getText(), cusPhoneField.getText(), LocalDate.now())); //ToDo : Birthday should be handled
-        }
+            if(cusPhoneField.getText().length() != 10) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText("Phone number must be 10 digits");
+                alert.showAndWait();
+                return;
+            }
+            if (newCustomer) {
+                if(cusName.getText().isEmpty() || cusDobField.getValue() == null) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setContentText("This customer phone number is not in database. Please provide customer name and date of birth to add to database");
+                    alert.showAndWait();
+                    return;
+                }
+                CustomerDAO CDAO = new CustomerDAOImpl();
+                CDAO.addCustomer(new Customer(cusName.getText(), cusPhoneField.getText(), cusDobField.getValue()));
+            }
 
-         TicketDAO TDAO = new TicketDAOImpl();
-         TDAO.addTicket(new Ticket(SID, cusPhoneField.getText(), userName, seatId.getText()));
+             TicketDAO TDAO = new TicketDAOImpl();
+             TDAO.addTicket(new Ticket(SID, cusPhoneField.getText(), userName, seatId.getText()));
 
-         dialog.setResult(ButtonType.OK);
-         dialog.close();
+             ShowTimeDAO SDAO = new ShowTimeDAOImpl();
+             SDAO.updateSeatCount(1,SID);
+
+             dialog.setResult(ButtonType.OK);
+             dialog.close();
+        }else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Movie Id, Seat Id and Customer phone number can not be empty");
+            alert.showAndWait();
         }
     }
 
@@ -100,20 +124,47 @@ public class NewTicket extends dialogBox {
             if(phone.length() == 10){
                 CustomerDAO CDAO = new CustomerDAOImpl();
                 Customer customer = CDAO.getCustomer(phone);
-                if(customer != null)
+                if(customer != null) {
                     cusName.setText(customer.getName() + " (Already registered)");
+                    cusDobField.setValue(customer.getDateOfBirth());
+                }
                 else {
                     cusName.setEditable(true);
                     cusName.setPromptText("Not a registered customer. Add name here");
+                    cusDobField.setPromptText("Not a registered customer. Add DoB here");
+                    cusDobField.setDisable(false);
+                    clearDob();
                     newCustomer = true;
                 }
             }else {
+                clearDob();
                 cusName.clear();
-                cusName.setPromptText("Add phone number first");
+                cusName.setPromptText("Enter customer phone number first");
+                cusDobField.setPromptText("Enter customer phone number first");
                 cusName.setEditable(false);
+                cusDobField.setDisable(true);
                 newCustomer = false;
             }
         }
+    }
+
+
+    @FXML
+    void calcAgeOnInput(ActionEvent event) {
+        Period age = Period.between(cusDobField.getValue(), LocalDate.now());
+
+        int years = age.getYears();
+        int months = age.getMonths();
+        int days = age.getDays();
+        cusAge.setText(years + " years, " + months + " months, " + days + " days");
+    }
+
+
+    private void clearDob() {
+        cusDobField.setOnAction(null);
+        cusDobField.setValue(null);
+        cusAge.setText(null);
+        cusDobField.setOnAction(this::calcAgeOnInput);
     }
 
     @FXML
@@ -143,8 +194,13 @@ public class NewTicket extends dialogBox {
     @FXML
     void selectDate(ActionEvent event) {
 
+        showTime.setOnAction(null);
+
         showTime.getItems().clear();
         seatId.clear();
+
+        showTime.setOnAction(this::loardSeats);
+        clearGrid();
 
         SD = showDate.getValue();
         ShowTimeDAO SDAO = new ShowTimeDAOImpl();
@@ -158,9 +214,19 @@ public class NewTicket extends dialogBox {
     @FXML
     void selectMovie(ActionEvent event) {
 
-        showDate.getItems().clear();
-        showTime.getItems().clear();
+        showDate.setOnAction(null);
+        showTime.setOnAction(null);
+
+        showDate.getSelectionModel().clearSelection();
+        showTime.getSelectionModel().clearSelection();
+
+        showDate.setOnAction(this::selectDate);
+        showTime.setOnAction(this::loardSeats);
+
         seatId.clear();
+        showTime.getItems().clear();
+        showDate.getItems().clear();
+        clearGrid();
 
         String MID = movieID.getValue();
         MovieDAO MDAO = new MovieDAOImpl();
@@ -178,8 +244,7 @@ public class NewTicket extends dialogBox {
 
     @FXML
     public void initialize() {
-        Arrays.fill(seatAvailability, false);
-        refreshSeatGrid();
+        clearGrid();
         MovieDAO MDAO = new MovieDAOImpl();
         movieID.getItems().addAll(MDAO.getAllMovieIds());
     }
@@ -218,6 +283,11 @@ public class NewTicket extends dialogBox {
 
     private void handleSeatClick(MouseEvent event, String SID) {
         seatId.setText(SID);
+    }
+
+    private void clearGrid() {
+        Arrays.fill(seatAvailability, false);
+        refreshSeatGrid();
     }
 
 }

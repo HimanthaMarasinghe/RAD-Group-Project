@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.DialogPane?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -14,9 +15,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 
-<DialogPane prefHeight="507.0" prefWidth="1375.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.radgroup.cinemahallticketmanagementsystem.controllers.NewTicket">
+<DialogPane prefHeight="507.0" prefWidth="1375.0" stylesheets="@CSS/Style.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.radgroup.cinemahallticketmanagementsystem.controllers.NewTicket">
    <content>
-      <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="486.0" prefWidth="1243.0">
+      <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="574.0" prefWidth="1375.0">
         <columnConstraints>
           <ColumnConstraints fillWidth="false" hgrow="NEVER" maxWidth="453.59996337890624" minWidth="10.0" prefWidth="415.2000366210938" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="939.1999633789062" />
@@ -90,10 +91,16 @@
                         <TextField fx:id="cusName" editable="false" prefHeight="26.0" prefWidth="250.0" promptText="Enter customer phone number first" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="432.0" prefHeight="30.0" prefWidth="231.0" spacing="10.0">
+                  <HBox fx:id="cusDobHbox" alignment="CENTER_LEFT" layoutX="20.0" layoutY="432.0" prefHeight="30.0" prefWidth="231.0" spacing="10.0">
                      <children>
                         <Label prefHeight="18.0" prefWidth="130.0" text="Customer Date of Birth" />
-                        <TextField fx:id="cusDoB" editable="false" prefHeight="26.0" prefWidth="250.0" promptText="Enter customer phone number first" />
+                        <DatePicker fx:id="cusDobField" disable="true" onAction="#calcAgeOnInput" prefWidth="250.0" promptText="Enter customer phone number first" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="468.0" prefHeight="30.0" prefWidth="231.0" spacing="10.0">
+                     <children>
+                        <Label prefHeight="18.0" prefWidth="130.0" text="Customer Age" />
+                        <TextField fx:id="cusAge" editable="false" prefHeight="26.0" prefWidth="250.0" promptText="Enter customer phone number first" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="74.0" prefWidth="266.0" spacing="20.0">

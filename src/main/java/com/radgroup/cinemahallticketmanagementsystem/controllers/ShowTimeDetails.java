@@ -45,6 +45,22 @@ public class ShowTimeDetails extends dialogBox {
 
     public void setDialogBox(Object data){
         ST = (ShowTime) data;
+//        MovieDAO MDAO = new MovieDAOImpl();
+//        Movie movie = MDAO.getMovie(ST.getMovieid());
+//
+//        movieIdField.setText(ST.getMovieid());
+//        movieNameField.setText(movie.getmovieName());
+//        showTimeDate.setText(String.valueOf(ST.getDate()));
+//        showTimeTimeField.setText(ST.getTimeslot());
+//        movieImage.setImage(Utility.loadImage(ST.getMovieid(), "moviePosters"));
+//
+//        refreshSeatGrid();
+
+
+        setDialogBox();
+    }
+
+    public void setDialogBox(){
         MovieDAO MDAO = new MovieDAOImpl();
         Movie movie = MDAO.getMovie(ST.getMovieid());
 
