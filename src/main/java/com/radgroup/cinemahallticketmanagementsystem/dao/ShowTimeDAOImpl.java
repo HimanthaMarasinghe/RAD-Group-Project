@@ -1,6 +1,7 @@
 package com.radgroup.cinemahallticketmanagementsystem.dao;
 
 import com.radgroup.cinemahallticketmanagementsystem.models.ShowTime;
+import com.radgroup.cinemahallticketmanagementsystem.models.Upcoming;
 import com.radgroup.cinemahallticketmanagementsystem.util.Database;
 
 import java.sql.Connection;
@@ -165,6 +166,32 @@ public class ShowTimeDAOImpl implements ShowTimeDAO {
             ps.executeUpdate();
             ps.close();
             con.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public ArrayList<Upcoming> listAllUpcomingShowTimes() {
+        try {
+            Connection con = Database.getConnection();
+            String sql = "SELECT date, timeslot, movie.MName, availableSeats FROM showtime INNER JOIN movie ON showtime.mid = movie.mid";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet resultSet = ps.executeQuery();
+            ArrayList<Upcoming> upcomings = new ArrayList<>();
+            while (resultSet.next()) {
+                Upcoming upcoming = new Upcoming(
+                        String.valueOf(resultSet.getDate("date")),
+                        resultSet.getString("timeslot"),
+                        resultSet.getString("movie.MName"),
+                        String.valueOf(resultSet.getInt("availableSeats"))
+                );
+                upcomings.add(upcoming);
+            }
+            resultSet.close();
+            ps.close();
+            con.close();
+            return upcomings;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

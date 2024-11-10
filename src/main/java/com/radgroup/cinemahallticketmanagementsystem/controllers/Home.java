@@ -1,5 +1,7 @@
 package com.radgroup.cinemahallticketmanagementsystem.controllers;
 
+import com.radgroup.cinemahallticketmanagementsystem.dao.ShowTimeDAO;
+import com.radgroup.cinemahallticketmanagementsystem.dao.ShowTimeDAOImpl;
 import com.radgroup.cinemahallticketmanagementsystem.models.Upcoming;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,20 +29,17 @@ public class Home extends CoreController implements Cont{
 
     private ObservableList<Upcoming> Up;
 
-    private Upcoming u1 = new Upcoming("aa", "bb", "cc", "dd");
-    private Upcoming u2 = new Upcoming("aa", "bb", "cc", "dd");
-    private Upcoming u3 = new Upcoming("aa", "bb", "cc", "dd");
-
     public void initialize() {
         System.out.println("Home Initializes");
+        ShowTimeDAO SDAO = new ShowTimeDAOImpl();
 
         date.setCellValueFactory(new PropertyValueFactory<Upcoming, String>("date"));
         time.setCellValueFactory(new PropertyValueFactory<Upcoming, String>("time"));
         movie.setCellValueFactory(new PropertyValueFactory<Upcoming, String>("movie"));
         seat.setCellValueFactory(new PropertyValueFactory<Upcoming, String>("seat"));
-        Up = FXCollections.observableArrayList(u1, u2, u3);
+        Up = FXCollections.observableArrayList();
+        Up.addAll(SDAO.listAllUpcomingShowTimes());
         UpcomingTable.setItems(Up);
-        test();
     }
 
     @Override
@@ -52,11 +51,5 @@ public class Home extends CoreController implements Cont{
     private void AddNewTicket(ActionEvent event) {
         System.out.println("AddNewTicket method called from Home controller");
         showDialogBox("NewTicket", "New Ticket");
-    }
-
-    private void test(){
-        for (int i = 0; i < 10; i++) {
-            Up.add(new Upcoming("Test","Test","Test","Test"));
-        }
     }
 }

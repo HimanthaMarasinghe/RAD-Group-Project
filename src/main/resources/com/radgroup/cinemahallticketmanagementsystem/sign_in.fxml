@@ -7,11 +7,17 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="180.0" prefWidth="398.0" spacing="20.0" stylesheets="@CSS/Style.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.radgroup.cinemahallticketmanagementsystem.controllers.Sign_in">
+<VBox alignment="CENTER" prefHeight="292.0" prefWidth="520.0" spacing="20.0" stylesheets="@CSS/Style.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.radgroup.cinemahallticketmanagementsystem.controllers.Sign_in">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
+   <Label text="Cinema Hall Management System">
+      <font>
+         <Font name="Arial Bold" size="24.0" />
+      </font>
+   </Label>
    <Label text="Sign In!" />
    <HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="26.0" prefWidth="358.0">
       <children>

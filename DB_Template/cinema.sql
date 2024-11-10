@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 09, 2024 at 09:48 AM
+-- Generation Time: Nov 09, 2024 at 04:09 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -49,7 +49,6 @@ INSERT INTO `customer` (`name`, `phone`, `dateOfBirth`) VALUES
 ('James Walker', '1234567809', '1990-08-28'),
 ('John Doe', '1234567890', '1990-01-01'),
 ('Jane Smith', '1234567891', '1985-02-14'),
-('Mike Brown', '1234567892', '1992-03-22'),
 ('Alice Johnson', '1234567893', '1993-04-18'),
 ('Chris Lee', '1234567894', '1988-05-30'),
 ('Karen White', '1234567895', '1991-06-15'),
@@ -78,13 +77,11 @@ CREATE TABLE `movie` (
 INSERT INTO `movie` (`Mid`, `MName`, `Duration`, `price`) VALUES
 ('AEG', 'Avengers End Game', '3 hours', 800),
 ('AM1', 'Ant-Man', '1h 57 m', 700),
-('AM2', 'Ant-Man and The Wasp', '1 hour 58 ', 700),
 ('AV1', 'The Avengers', '2 hours 23', 800),
 ('BP', 'Black Panther', '2 hours 14', 750),
 ('DRS', 'Doctor Strange', '1 hour 55 ', 750),
 ('HUL', 'The Incredible Hulk', '1 hour 52 ', 650),
 ('IM1', 'Iron Man', '2 hours 6 ', 700),
-('IM2', 'Iron Man 2', '2 hours 4 ', 700),
 ('IM3', 'Iron Man 3', '2 hours 10', 750),
 ('TH1', 'Thor', '1 hour 55 ', 650),
 ('TH2', 'Thor: The Dark World', '1 hour 52 ', 650);
@@ -108,18 +105,13 @@ CREATE TABLE `showtime` (
 --
 
 INSERT INTO `showtime` (`sid`, `date`, `timeslot`, `mid`, `availableSeats`) VALUES
-(27, '2024-11-08', '10:30 to 12:30', 'AM1', 200),
-(28, '2024-11-07', '10:30 to 12:30', 'AM1', 200),
-(29, '2024-11-06', '10:30 to 12:30', 'AM1', 200),
 (30, '2024-11-05', '10:30 to 12:30', 'AM1', 200),
 (31, '2024-11-04', '10:30 to 12:30', 'AM1', 200),
 (32, '2024-11-03', '10:30 to 12:30', 'AM1', 200),
 (33, '2024-11-02', '10:30 to 12:30', 'AM1', 200),
-(34, '2024-11-01', '10:30 to 12:30', 'AM1', 100),
 (35, '2024-11-11', '10:30 to 12:30', 'AM1', 200),
 (36, '2024-11-10', '10:30 to 12:30', 'AM1', 200),
 (37, '2024-11-09', '10:30 to 12:30', 'AM1', 200),
-(39, '2024-11-08', '13:30 to 15:30', 'AEG', 200),
 (40, '2024-11-07', '13:30 to 15:30', 'AEG', 200),
 (41, '2024-11-06', '13:30 to 15:30', 'AEG', 200),
 (42, '2024-11-05', '16:30 to 18:30', 'AEG', 200),
@@ -134,7 +126,10 @@ INSERT INTO `showtime` (`sid`, `date`, `timeslot`, `mid`, `availableSeats`) VALU
 (51, '2024-11-05', '20:00 to 22:00', 'BP', 200),
 (52, '2024-11-04', '20:00 to 22:00', 'BP', 200),
 (53, '2024-11-03', '20:00 to 22:00', 'BP', 200),
-(54, '2024-12-31', '13:30 to 15:30', 'AEG', 200);
+(54, '2024-12-31', '13:30 to 15:30', 'AEG', 200),
+(56, '2025-11-22', '20:00 to 22:00', 'HUL', 200),
+(57, '2025-11-21', '20:00 to 22:00', 'HUL', 199),
+(58, '2025-11-20', '20:00 to 22:00', 'HUL', 200);
 
 -- --------------------------------------------------------
 
@@ -149,13 +144,6 @@ CREATE TABLE `tickets` (
   `empUserName` varchar(5) DEFAULT NULL,
   `seatNo` varchar(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tickets`
---
-
-INSERT INTO `tickets` (`ticketID`, `showTimeId`, `customerPhone`, `empUserName`, `seatNo`) VALUES
-(9, 47, '1234567892', 'a', 'B2');
 
 -- --------------------------------------------------------
 
@@ -177,9 +165,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`username`, `name`, `address`, `phone`, `password`, `role`) VALUES
-('a', 'Himantha Marasinghe', 'Polgahawela', '0372244690', 'a', 'Manager'),
-('ANJ', 'Anjana Nadeeshan', 'Anuradhapura', '0987654321', 'Default', 'Employee'),
-('NOJI', 'Noji Yudhara', 'Nugegoda', '2345678', 'DEFAULT', 'Employee');
+('a', 'Himantha Marasinghe', 'Polgahawela', '0702955010', 'a', 'Manager'),
+('ANJ', 'Anjana Nadeeshan', 'Anuradhapura', '0987654321', 'Default', 'Manager'),
+('n', 'Noji Yudhara', 'Nugegoda', '1234567890', 'DEFAULT', 'Manager'),
+('r', 'Rangika Herath', 'Colombo', '0123456789', 'r', 'Manager'),
+('s', 'Seniru Ranasinghe', 'Nugegoda', '0123456789', 's', 'Manager');
 
 --
 -- Indexes for dumped tables
@@ -228,13 +218,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `showtime`
 --
 ALTER TABLE `showtime`
-  MODIFY `sid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `sid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
 
 --
 -- AUTO_INCREMENT for table `tickets`
 --
 ALTER TABLE `tickets`
-  MODIFY `ticketID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `ticketID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- Constraints for dumped tables
