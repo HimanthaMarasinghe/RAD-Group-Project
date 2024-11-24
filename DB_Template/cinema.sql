@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 09, 2024 at 04:09 PM
+-- Generation Time: Nov 10, 2024 at 05:15 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `cinema`
 --
+CREATE DATABASE IF NOT EXISTS `cinema` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `cinema`;
 
 -- --------------------------------------------------------
 
@@ -54,8 +56,7 @@ INSERT INTO `customer` (`name`, `phone`, `dateOfBirth`) VALUES
 ('Karen White', '1234567895', '1991-06-15'),
 ('Dave Black', '1234567896', '1984-07-25'),
 ('Eva Green', '1234567897', '1995-08-08'),
-('Paul Scott', '1234567898', '1990-09-12'),
-('Laura Hill', '1234567899', '1996-10-05');
+('Paul Scott', '1234567898', '1990-09-12');
 
 -- --------------------------------------------------------
 
@@ -77,12 +78,10 @@ CREATE TABLE `movie` (
 INSERT INTO `movie` (`Mid`, `MName`, `Duration`, `price`) VALUES
 ('AEG', 'Avengers End Game', '3 hours', 800),
 ('AM1', 'Ant-Man', '1h 57 m', 700),
-('AV1', 'The Avengers', '2 hours 23', 800),
 ('BP', 'Black Panther', '2 hours 14', 750),
 ('DRS', 'Doctor Strange', '1 hour 55 ', 750),
 ('HUL', 'The Incredible Hulk', '1 hour 52 ', 650),
 ('IM1', 'Iron Man', '2 hours 6 ', 700),
-('IM3', 'Iron Man 3', '2 hours 10', 750),
 ('TH1', 'Thor', '1 hour 55 ', 650),
 ('TH2', 'Thor: The Dark World', '1 hour 52 ', 650);
 
@@ -105,20 +104,19 @@ CREATE TABLE `showtime` (
 --
 
 INSERT INTO `showtime` (`sid`, `date`, `timeslot`, `mid`, `availableSeats`) VALUES
-(30, '2024-11-05', '10:30 to 12:30', 'AM1', 200),
 (31, '2024-11-04', '10:30 to 12:30', 'AM1', 200),
 (32, '2024-11-03', '10:30 to 12:30', 'AM1', 200),
 (33, '2024-11-02', '10:30 to 12:30', 'AM1', 200),
-(35, '2024-11-11', '10:30 to 12:30', 'AM1', 200),
+(35, '2024-11-11', '10:30 to 12:30', 'AM1', 185),
 (36, '2024-11-10', '10:30 to 12:30', 'AM1', 200),
 (37, '2024-11-09', '10:30 to 12:30', 'AM1', 200),
-(40, '2024-11-07', '13:30 to 15:30', 'AEG', 200),
+(40, '2024-12-07', '13:30 to 15:30', 'AEG', 199),
 (41, '2024-11-06', '13:30 to 15:30', 'AEG', 200),
 (42, '2024-11-05', '16:30 to 18:30', 'AEG', 200),
 (43, '2024-11-04', '13:30 to 15:30', 'AEG', 200),
 (44, '2024-11-03', '13:30 to 15:30', 'AEG', 200),
 (45, '2024-11-02', '13:30 to 15:30', 'AEG', 200),
-(46, '2024-11-01', '13:30 to 15:30', 'AEG', 200),
+(46, '2024-11-01', '13:30 to 15:30', 'AEG', 198),
 (47, '2024-11-09', '20:00 to 22:00', 'BP', 200),
 (48, '2024-11-08', '20:00 to 22:00', 'BP', 200),
 (49, '2024-11-07', '20:00 to 22:00', 'BP', 200),
@@ -128,8 +126,29 @@ INSERT INTO `showtime` (`sid`, `date`, `timeslot`, `mid`, `availableSeats`) VALU
 (53, '2024-11-03', '20:00 to 22:00', 'BP', 200),
 (54, '2024-12-31', '13:30 to 15:30', 'AEG', 200),
 (56, '2025-11-22', '20:00 to 22:00', 'HUL', 200),
-(57, '2025-11-21', '20:00 to 22:00', 'HUL', 199),
-(58, '2025-11-20', '20:00 to 22:00', 'HUL', 200);
+(58, '2025-11-20', '20:00 to 22:00', 'HUL', 200),
+(132, '2024-11-23', '10:30 to 12:30', 'AM1', 200),
+(133, '2024-11-22', '10:30 to 12:30', 'AM1', 200),
+(134, '2024-11-21', '10:30 to 12:30', 'AM1', 200),
+(135, '2024-11-20', '10:30 to 12:30', 'AM1', 200),
+(136, '2024-11-19', '10:30 to 12:30', 'AM1', 200),
+(137, '2024-11-18', '10:30 to 12:30', 'AM1', 200),
+(138, '2024-11-17', '10:30 to 12:30', 'AM1', 200),
+(139, '2024-11-30', '10:30 to 12:30', 'AM1', 200),
+(141, '2024-12-07', '10:30 to 12:30', 'AM1', 200),
+(142, '2024-12-06', '10:30 to 12:30', 'AM1', 200),
+(143, '2024-12-05', '10:30 to 12:30', 'AM1', 200),
+(144, '2024-12-04', '10:30 to 12:30', 'AM1', 200),
+(145, '2024-12-03', '10:30 to 12:30', 'AM1', 200),
+(146, '2024-12-02', '10:30 to 12:30', 'AM1', 200),
+(147, '2024-12-01', '10:30 to 12:30', 'AM1', 200),
+(148, '2024-11-02', '20:00 to 22:00', 'DRS', 200),
+(149, '2024-11-01', '20:00 to 22:00', 'DRS', 200),
+(150, '2024-11-20', '13:30 to 15:30', 'DRS', 200),
+(154, '2022-11-04', '10:30 to 12:30', 'AM1', 200),
+(155, '2022-11-03', '10:30 to 12:30', 'AM1', 200),
+(156, '2022-11-02', '10:30 to 12:30', 'AM1', 200),
+(157, '2022-11-01', '10:30 to 12:30', 'AM1', 200);
 
 -- --------------------------------------------------------
 
@@ -145,6 +164,30 @@ CREATE TABLE `tickets` (
   `seatNo` varchar(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `tickets`
+--
+
+INSERT INTO `tickets` (`ticketID`, `showTimeId`, `customerPhone`, `empUserName`, `seatNo`) VALUES
+(24, 40, '1234567890', 'a', 'A1'),
+(25, 46, '1234567890', 'a', 'A1'),
+(26, 46, '1234567891', 'a', 'A2'),
+(36, 35, '1234567893', 'a', 'D12'),
+(37, 35, '1234567894', 'a', 'G6'),
+(38, 35, '1234567895', 'a', 'G8'),
+(39, 35, '1234567896', 'a', 'F10'),
+(40, 35, '1234567897', 'a', 'I10'),
+(41, 35, '1234567898', 'a', 'I6'),
+(42, 35, '1234567898', 'a', 'F14'),
+(43, 35, '1234567890', 'a', 'I14'),
+(44, 35, '1234567895', 'a', 'J13'),
+(45, 35, '1234567898', 'a', 'H16'),
+(46, 35, '1234567897', 'a', 'F9'),
+(47, 35, '1234567897', 'a', 'F8'),
+(48, 35, '1234567891', 'a', 'G9'),
+(49, 35, '1234567891', 'a', 'G10'),
+(50, 35, '1234567891', 'a', 'E10');
+
 -- --------------------------------------------------------
 
 --
@@ -152,11 +195,11 @@ CREATE TABLE `tickets` (
 --
 
 CREATE TABLE `users` (
-  `username` varchar(5) NOT NULL,
-  `name` varchar(30) NOT NULL,
-  `address` varchar(50) NOT NULL,
+  `username` varchar(30) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL,
   `phone` varchar(10) NOT NULL,
-  `password` varchar(12) NOT NULL DEFAULT 'DEFAULT',
+  `password` varchar(255) NOT NULL DEFAULT 'DEFAULT',
   `role` enum('Manager','Employee') NOT NULL DEFAULT 'Employee'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -165,8 +208,13 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`username`, `name`, `address`, `phone`, `password`, `role`) VALUES
-('a', 'Himantha Marasinghe', 'Polgahawela', '0702955010', 'a', 'Manager'),
+('a', 'Himantha Marasinghe', 'Polgahawela', '0987654321', 'a', 'Manager'),
 ('ANJ', 'Anjana Nadeeshan', 'Anuradhapura', '0987654321', 'Default', 'Manager'),
+('emp', 'Marasinghe Himantha', 'Kurunegala', '1234567890', 'DEFAULT', 'Employee'),
+('emp2', 'Ranasinghe Seniru', 'Nugegoda', '1212121212', 'DEFAULT', 'Employee'),
+('emp3', 'Yudhara Noji', 'Nugegoda', '2323232323', 'DEFAULT', 'Employee'),
+('emp4', 'Herath Rangika', 'Colombo', '3434343434', 'DEFAULT', 'Employee'),
+('emp5', 'Nadeeshan Anjana', 'Anuradhapura', '8787878787', 'DEFAULT', 'Employee'),
 ('n', 'Noji Yudhara', 'Nugegoda', '1234567890', 'DEFAULT', 'Manager'),
 ('r', 'Rangika Herath', 'Colombo', '0123456789', 'r', 'Manager'),
 ('s', 'Seniru Ranasinghe', 'Nugegoda', '0123456789', 's', 'Manager');
@@ -218,13 +266,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `showtime`
 --
 ALTER TABLE `showtime`
-  MODIFY `sid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
+  MODIFY `sid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=158;
 
 --
 -- AUTO_INCREMENT for table `tickets`
 --
 ALTER TABLE `tickets`
-  MODIFY `ticketID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `ticketID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- Constraints for dumped tables

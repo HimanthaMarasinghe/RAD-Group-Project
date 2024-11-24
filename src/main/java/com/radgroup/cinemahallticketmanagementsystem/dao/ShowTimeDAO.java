@@ -11,7 +11,7 @@ public interface ShowTimeDAO {
     public boolean deleteShowTime(int showid);
     public ShowTime getShowTime(int showid);  //to edit it if we tend to edit it in seperate window
     public boolean updateShowTime(ShowTime showtime);
-    public ArrayList<ShowTime> listAllShowTimesForMovie(String movieId);   //list all
+    public ArrayList<ShowTime> listAllShowTimesForMovie(String movieId, int flag);   //list all
     public int getNumberOfShowTimes(LocalDate fromDate, LocalDate toDate, String timeSlot);
     public ArrayList<String> getAllShowTimes(String movieId, LocalDate date);
     public int getShowId(ShowTime showTime);

@@ -3,29 +3,18 @@ package com.radgroup.cinemahallticketmanagementsystem.models;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.Objects;
 
 public class Customer {
-//    private int customerId;
     private String name;
     private String phone;
     private LocalDate dateOfBirth;
 
-//    public Customer(int customerId, String name, String phone, LocalDate dateOfBirth) {
     public Customer(String name, String phone, LocalDate dateOfBirth) {
-//        this.customerId = customerId;
         this.name = name;
         this.phone = phone;
         this.dateOfBirth = dateOfBirth;
     }
-
-    // Getters and Setters
-//    public int getCustomerId() {
-//        return customerId;
-//    }
-
-//    public void setCustomerId(int customerId) {
-//        this.customerId = customerId;
-//    }
 
     public String getName() {
         return name;
@@ -49,5 +38,13 @@ public class Customer {
 
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public boolean areAttributesEqual(Customer other) {
+        if (other == null) return false;
+
+        return Objects.equals(this.name, other.name) &&
+                Objects.equals(this.phone, other.phone) &&
+                Objects.equals(this.dateOfBirth, other.dateOfBirth);
     }
 }

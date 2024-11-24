@@ -92,6 +92,8 @@ public class UpdateTicket extends dialogBox {
 
     private String customerPhone;
 
+    private Label previouslyClicked;
+
     @FXML
     void loardSeats(ActionEvent event) {
         ST = showTime.getValue();
@@ -149,7 +151,7 @@ public class UpdateTicket extends dialogBox {
         seatId.setText(ticket.getSeatNo());
 
         showDate.getItems().clear();
-        ArrayList<ShowTime> showTimes = SDAO.listAllShowTimesForMovie(selectedMovie.getmovieId());
+        ArrayList<ShowTime> showTimes = SDAO.listAllShowTimesForMovie(selectedMovie.getmovieId(), 1);
         for (ShowTime st : showTimes) {
             showDate.getItems().add(st.getDate());
         }
@@ -212,8 +214,13 @@ public class UpdateTicket extends dialogBox {
         return label;
     }
 
-    private void handleSeatClick(MouseEvent event, String SeatID) {
-        seatId.setText(SeatID);
+
+    private void handleSeatClick(MouseEvent event, String SID) {
+        seatId.setText(SID);
+        if(previouslyClicked != null)
+            previouslyClicked.setStyle("-fx-background-color: #0fe000; -fx-text-fill: #000000; -fx-alignment: center; -fx-font-weight: bold;");
+        previouslyClicked = (Label) event.getSource();
+        previouslyClicked.setStyle("-fx-background-color: #ffe700; -fx-text-fill: #000000; -fx-alignment: center; -fx-font-weight: bold;");
     }
 
     @FXML
@@ -261,7 +268,7 @@ public class UpdateTicket extends dialogBox {
         movieImage.setImage(Utility.loadImage(MID, "moviePosters"));
 
         ShowTimeDAO SDAO = new ShowTimeDAOImpl();
-        ArrayList<ShowTime> ShowTimes = SDAO.listAllShowTimesForMovie(MID);
+        ArrayList<ShowTime> ShowTimes = SDAO.listAllShowTimesForMovie(MID, 1);
         for(ShowTime st : ShowTimes) {
             showDate.getItems().add(st.getDate());
         }
@@ -319,5 +326,4 @@ public class UpdateTicket extends dialogBox {
         Arrays.fill(seatAvailability, false);
         refreshSeatGrid();
     }
-
 }

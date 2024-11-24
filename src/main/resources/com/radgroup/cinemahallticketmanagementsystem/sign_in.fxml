@@ -32,5 +32,5 @@
          <PasswordField fx:id="password" HBox.hgrow="ALWAYS" />
       </children>
    </HBox>
-    <Button fx:id="SignIn" onAction="#viewHome" text="Sign Up" />
+    <Button fx:id="SignIn" onAction="#viewHome" text="Sign In" />
 </VBox>

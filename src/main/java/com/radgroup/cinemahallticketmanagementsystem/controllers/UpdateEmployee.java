@@ -2,7 +2,6 @@ package com.radgroup.cinemahallticketmanagementsystem.controllers;
 
 import com.radgroup.cinemahallticketmanagementsystem.dao.UserDAO;
 import com.radgroup.cinemahallticketmanagementsystem.dao.UserDAOImpl;
-import com.radgroup.cinemahallticketmanagementsystem.models.Customer;
 import com.radgroup.cinemahallticketmanagementsystem.models.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,7 +9,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 
-import static com.radgroup.cinemahallticketmanagementsystem.controllers.Customers.testCusList;
 import static com.radgroup.cinemahallticketmanagementsystem.controllers.Employees.testUsersList;
 
 public class UpdateEmployee extends dialogBox {

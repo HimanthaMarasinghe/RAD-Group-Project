@@ -6,6 +6,7 @@ import com.radgroup.cinemahallticketmanagementsystem.models.Movie;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -23,6 +24,9 @@ public class Movies extends CoreController implements Cont {
     private ScrollPane movieScrloPane;
 
     @FXML
+    private Button addMovieButton;
+
+    @FXML
     void handleAddNewMovie(ActionEvent event) {
         showDialogBox("NewMovie", "Add New Movie");
         movieListRefresh();
@@ -35,6 +39,8 @@ public class Movies extends CoreController implements Cont {
 
     @Override
     public void setView(Object data) {
+        if(!isManager)
+            addMovieButton.setDisable(true);
         movieListRefresh();
     }
     
