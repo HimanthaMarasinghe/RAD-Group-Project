@@ -46,68 +46,14 @@ To run this project, ensure the following are installed on your system:
 
 ## Team Members
 
-<style>
-    .Contributors{
-        display : flex;
-        flex-wrap : auto;
-        margin-bottom : 25px;
-    }
+- [Himantha Marasinghe](https://github.com/HimanthaMarasinghe)
+- [Seniru Ranasinghe](https://github.com/SeniruR)
+- [Rangika Herath](https://github.com/RangikaaHerath001)
+- [Noji Yudara](https://github.com/Nojiyu)
+- [Anjana Nadeeshan](https://github.com/anjananadee23)
 
-    .profile {
-        display : flex;
-        flex-direction : column;
-        align-items : center;
-        height : 100px;
-        aspect-ratio : 1;
-        text-align : center;
-        transition: transform 0.3s ease;
-        text-decoration : none;
-        color : unset;
-    }
 
-    .profile:hover{
-        text-decoration : none;
-        color : unset;
-    }
-
-    .profile img {
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 3px solid #fff;
-        transition: transform 0.3s ease; 
-    }
-
-    .profile img:hover {
-        transform: scale(1.2);
-    }
-</style>
-
-<div class="Contributors">
-    <a href="https://github.com/HimanthaMarasinghe" class="profile">
-        <img src="https://github.com/HimanthaMarasinghe.png"/>
-        Himantha Marasinghe
-    </a>
-    <a href="https://github.com/SeniruR" class="profile">
-        <img src="https://github.com/SeniruR.png"/>
-        Seniru Ranasinghe
-    </a>
-    <a href="https://github.com/RangikaaHerath001" class="profile">
-        <img src="https://github.com/RangikaaHerath001.png"/>
-        Rangika Herath
-    </a>
-    <a href="https://github.com/Nojiyu" class="profile">
-        <img src="https://github.com/Nojiyu.png"/>
-        Noji Yudara
-    </a>
-    <a href="https://github.com/anjananadee23" class="profile">
-        <img src="https://github.com/anjananadee23.png"/>
-        Anjana Nadeeshan
-    </a>
-</div>
-
-##Here are some screenshots of the interface
+## Here are some screenshots of the interface
 
 ![alt text](<Screen Shots/Login.png>)
 ![alt text](<Screen Shots/Home.png>)
