@@ -30,7 +30,7 @@ To run this project, ensure the following are installed on your system:
 
 2. **Create the database**:
 
-- Export the [DB_Template/cinema.sql](DB_Template/cinema.sql) file in to your MySql server. It will create the databse and tables.
+- Import the [DB_Template/cinema.sql](DB_Template/cinema.sql) file in to your MySql server. It will create the databse and tables.
 
 3. **Run the project using Maven Wrapper**:
 - Open cmd or any other comand line aplication in the project root folder and run folowing code.
